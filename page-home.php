@@ -19,32 +19,22 @@ get_header();
 
 	<!doctype html>
 
-  <div class="container">
-
     <!-- Hero -->
     <section class="hero" aria-label="Hero banner">
-      <?php $hero_image = get_field('hero_image'); ?>
-	  <?php echo wp_get_attachment_image($hero_image, 'full'); ?>
-      <div class="overlay" role="note">
-        <h1>Call to Action</h1>
-        <p>Join us to protect our community and ensure every voice is heard.</p>
+      <?php $hero = get_field('hero'); ?>
+	    <?php echo wp_get_attachment_image($hero['image'], 'full'); ?>
+      <div class="cta">
+        <h1><?php echo $hero['title']; ?></h1>
+        <p><?php echo $hero['description']; ?></p>
+        <?php if ($hero['button_url']): ?>
+          <a class="cta-btn" href="<?php echo $hero['button_url']; ?>">
+            <?php echo $hero['button_text']; ?>
+          </a> 
+        <?php endif; ?>
       </div>
-      <button class="cta-btn" onclick="document.querySelector('#join-email').scrollIntoView({behavior:'smooth'})">Join the Cause</button>
+      
     </section>
 
-    <!-- Join bar -->
-    <div class="join-bar" id="join-email" role="region" aria-label="Join the cause sign up">
-      <div>
-        <div class="title">Join the Cause</div>
-        <div style="font-size:13px; opacity:0.95;">Get occasional updates & event invites</div>
-      </div>
-
-      <form onsubmit="event.preventDefault(); alert('Thanks — you\'re signed up!');" aria-label="Newsletter signup">
-        <label for="email" class="sr-only" style="display:none">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email address" required />
-        <button type="submit">Sign up</button>
-      </form>
-    </div>
 
     <!-- About -->
     <section class="about" aria-labelledby="about-heading">
@@ -78,35 +68,16 @@ get_header();
 
     <!-- Testimonials -->
     <section class="testimonials" aria-label="Testimonials">
-      <div class="test-controls" aria-hidden="true">
-        <button id="prev" title="Previous testimonial" aria-label="Previous">&lsaquo;</button>
-        <button id="next" title="Next testimonial" aria-label="Next">&rsaquo;</button>
-      </div>
-
       <div id="testimonialText" class="quote" aria-live="polite">
         "This community group helped me find my voice — the events are welcoming and energizing."
       </div>
       <div style="margin-top:12px; color:#06305a; font-weight:700;">— A local neighbor</div>
-    </section>
-
-    <!-- Footer -->
-    <footer aria-label="Footer">
-      <div>
-        <div style="font-weight:700; margin-bottom:6px;">Goshen Democrats</div>
-        <div class="small">Connect. Volunteer. Vote.</div>
-        <div style="margin-top:8px;" class="small">Email: info@example.org</div>
+      <div class="test-controls" aria-hidden="true">
+        <button id="prev" title="Previous testimonial" aria-label="Previous">&lsaquo;</button>
+        <button id="next" title="Next testimonial" aria-label="Next">&rsaquo;</button>
       </div>
-
-      <div style="min-width:200px;">
-        <div style="font-weight:700; margin-bottom:6px;">Quick Links</div>
-        <div class="small">
-          <div><a style="color:#dbefff;text-decoration:none;" href="#">Events</a></div>
-          <div><a style="color:#dbefff;text-decoration:none;" href="#">Resources</a></div>
-        </div>
-      </div>
-    </footer>
-
-  </div>
+    </section> 
+    
 
   <script>
     // Simple testimonial carousel (3 sample quotes)
