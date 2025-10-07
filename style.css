@@ -989,6 +989,8 @@ textarea {
     grid-template-columns: repeat(3, minmax(0,1fr));
     gap:18px;
     margin: 18px 0;
+  }
+  .stories-grid--featured{
     padding: 30px;
     background-color: var(--green);
     border-radius: 12px;

@@ -53,7 +53,7 @@ get_header();
     ?>
 
     <!-- Featured Stories -->
-    <section class="stories-grid" aria-label="Featured Stories">
+    <section class="stories-grid stories-grid--featured" aria-label="Featured Stories">
       <?php foreach ($stories as $story): ?>
         <?php get_template_part( 'template-parts/content', 'story-card', array('post_id' => $story) ); ?>
       <?php endforeach; ?>      

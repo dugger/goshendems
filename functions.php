@@ -188,3 +188,12 @@ function goshendems_stories_archive_query( $query ) {
 }
 add_action( 'pre_get_posts', 'goshendems_stories_archive_query' );
 
+function my_toolbars( $toolbars )
+{
+   $toolbars['Very Simple' ] = array();
+   $toolbars['Very Simple' ][1] = array('formatselect', 'bold' , 'italic' , 'link', 'alignleft', 'aligncenter', 'alignright' );
+
+   return $toolbars;
+}
+
+add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );

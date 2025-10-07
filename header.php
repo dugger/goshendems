@@ -32,7 +32,7 @@
 				<a class="brand" href="/"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/logo_wide.png" alt="Goshen Dems Logo"></a>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle menu"><img class="hamburger-icon" src="<?php echo get_template_directory_uri(); ?>/assets/hamburger.png" alt="" aria-hidden="true" /><span class="screen-reader-text">Menu</span></button>
 				<ul id="primary-menu">
-					<li><a href="#about">About</a></li>
+					<li><a href="/about">About</a></li>
 					<li><a href="/calendar">Events</a></li>
 					<li><a href="/"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/logo_light.png" alt="Goshen Dems Logo"></a></li>
 					<li><a href="/stories">Stories</a></li>
