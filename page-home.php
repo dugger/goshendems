@@ -37,11 +37,12 @@ get_header();
 
 
     <!-- About -->
+    <?php $about = get_field('about_section'); ?>
     <section class="about" aria-labelledby="about-heading">
-      <div class="thumb" aria-hidden="true">photo</div>
+      <div class="thumb" aria-hidden="true"><?php echo wp_get_attachment_image($about['image'], 'full'); ?></div>
       <div>
-        <h2 id="about-heading">About Goshen Democrats</h2>
-        <p>We’re a local group focused on supporting our community through civic engagement, local events, and volunteer efforts. Come to a meeting, lend a hand, or just learn more — every contribution helps.</p>
+        <h2 id="about-heading"><?php echo $about['title']; ?></h2>
+        <p><?php echo $about['text']; ?></p>
       </div>
     </section>
 

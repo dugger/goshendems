@@ -5,21 +5,21 @@
  * navigation support for dropdown menus.
  */
 ( function() {
-	const siteNavigation = document.getElementById( 'site-navigation' );
+    const siteNavigation = document.getElementById( 'site-navigation' ) || document.querySelector('nav.nav');
 
 	// Return early if the navigation doesn't exist.
 	if ( ! siteNavigation ) {
 		return;
 	}
 
-	const button = siteNavigation.getElementsByTagName( 'button' )[ 0 ];
+    const button = siteNavigation.querySelector( '.menu-toggle' ) || siteNavigation.getElementsByTagName( 'button' )[ 0 ];
 
 	// Return early if the button doesn't exist.
 	if ( 'undefined' === typeof button ) {
 		return;
 	}
 
-	const menu = siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
+    const menu = siteNavigation.querySelector( 'ul' ) || siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
 
 	// Hide menu toggle button if menu is empty and return early.
 	if ( 'undefined' === typeof menu ) {
@@ -27,9 +27,13 @@
 		return;
 	}
 
-	if ( ! menu.classList.contains( 'nav-menu' ) ) {
-		menu.classList.add( 'nav-menu' );
-	}
+    // Ensure aria relationship aligns with markup
+    if ( button && menu && button.hasAttribute('aria-controls') ) {
+        const controls = button.getAttribute('aria-controls');
+        if ( controls && menu.id !== controls ) {
+            menu.id = controls;
+        }
+    }
 
 	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 	button.addEventListener( 'click', function() {

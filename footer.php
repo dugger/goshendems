@@ -22,8 +22,8 @@
 		<div style="min-width:200px;">
 			<div style="font-weight:700; margin-bottom:6px;">Quick Links</div>
 			<div class="small">
-			<div><a style="color:#dbefff;text-decoration:none;" href="#">Events</a></div>
-			<div><a style="color:#dbefff;text-decoration:none;" href="#">Resources</a></div>
+			<div><a style="color:#dbefff;text-decoration:none;" href="/calendar">Events</a></div>
+			<div><a style="color:#dbefff;text-decoration:none;" href="/stories">Stories</a></div>
 			</div>
 		</div>
 		</footer>

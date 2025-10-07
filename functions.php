@@ -176,3 +176,15 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Enforce 9 posts per page on Story archives
+ */
+function goshendems_stories_archive_query( $query ) {
+	if ( ! is_admin() && $query->is_main_query() ) {
+		if ( $query->is_post_type_archive( 'story' ) ) {
+			$query->set( 'posts_per_page', 9 );
+		}
+	}
+}
+add_action( 'pre_get_posts', 'goshendems_stories_archive_query' );
+

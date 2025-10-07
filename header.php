@@ -28,12 +28,14 @@
 
 	<div class="container">
 		<header id="masthead" class="site-header">
-			<nav class="nav" aria-label="Primary">
-				<ul>
+			<nav id="site-navigation" class="nav" aria-label="Primary">
+				<a class="brand" href="/"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/logo_wide.png" alt="Goshen Dems Logo"></a>
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle menu"><img class="hamburger-icon" src="<?php echo get_template_directory_uri(); ?>/assets/hamburger.png" alt="" aria-hidden="true" /><span class="screen-reader-text">Menu</span></button>
+				<ul id="primary-menu">
 					<li><a href="#about">About</a></li>
 					<li><a href="/calendar">Events</a></li>
 					<li><a href="/"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/logo_light.png" alt="Goshen Dems Logo"></a></li>
-					<li><a href="#volunteer">Volunteer</a></li>
+					<li><a href="/stories">Stories</a></li>
 					<li><a href="#donate">Donate</a></li>
 				</ul>
 			</nav>
