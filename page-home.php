@@ -46,26 +46,19 @@ get_header();
       </div>
     </section>
 
-    <!-- Action cards -->
-    <section class="cards" aria-label="Quick actions">
-      <article class="card" aria-labelledby="card1">
-        <h3 id="card1">Upcoming Meetings</h3>
-        <div style="opacity:0.95;font-size:13px;">See dates & locations</div>
-        <a href="#">Free and open →</a>
-      </article>
 
-      <article class="card" style="background:linear-gradient(180deg,#4fd26a,#3fb055)" aria-labelledby="card2">
-        <h3 id="card2">Where can I do to help?</h3>
-        <div style="opacity:0.95;font-size:13px;">Volunteer, canvass, host</div>
-        <a href="#">Learn more →</a>
-      </article>
+    <?php
+      $stories = get_field('featured_stories'); 
+      if ($stories):
+    ?>
 
-      <article class="card" style="background:linear-gradient(180deg,#4bb46a,#2f8a3a)" aria-labelledby="card3">
-        <h3 id="card3">Another Call to Action</h3>
-        <div style="opacity:0.95;font-size:13px;">Take the next step</div>
-        <a href="#">Sign up →</a>
-      </article>
+    <!-- Featured Stories -->
+    <section class="stories-grid" aria-label="Featured Stories">
+      <?php foreach ($stories as $story): ?>
+        <?php get_template_part( 'template-parts/content', 'story-card', array('post_id' => $story) ); ?>
+      <?php endforeach; ?>      
     </section>
+    <?php endif; ?>
 
     <!-- Testimonials -->
     <section class="testimonials" aria-label="Testimonials">
