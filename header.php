@@ -36,7 +36,7 @@
 					<li><a href="/calendar">Events</a></li>
 					<li><a href="/"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/logo_light.png" alt="Goshen Dems Logo"></a></li>
 					<li><a href="/stories">Stories</a></li>
-					<li><a href="#donate">Donate</a></li>
+					<li><a href="/contact-us">Contact</a></li>
 				</ul>
 			</nav>
 		</header><!-- #masthead -->

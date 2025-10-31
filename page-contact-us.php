@@ -15,10 +15,16 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
-	<!doctype html>
-
+<main id="primary" class="site-main">
+  <div class="container light-blue">
+    <section class="form">
+      <h2><?php the_title(); ?></h2>
+      <p><?php the_field('form_intro'); ?></p>
+      <?php echo do_shortcode('[ninja_form id=1]'); ?>
+      </section>
+  </div>
+</main>
 
 <?php
+// get_sidebar();
 get_footer();

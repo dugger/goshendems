@@ -16,12 +16,12 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-  <div class="container">
-  <section class="hero" aria-label="Calendar">
-    <?php 
-      $calendar = get_field('calendar')[0];
-      echo do_shortcode('[calendar id="' . $calendar . '"]');
-    ?>
+  <div class="container light-blue">
+    <section class="calendar" aria-label="Calendar">
+      <?php 
+        $calendar = get_field('calendar')[0];
+        echo do_shortcode('[calendar id="' . $calendar . '"]');
+      ?>
     </section>
 </div>
 </main>

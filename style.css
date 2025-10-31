@@ -1295,6 +1295,28 @@ textarea {
 	position:relative;
 	overflow:hidden;
   }
+
+  .light-blue{
+	background:#dbeeff;
+	padding:48px;
+	position:relative;
+	overflow:hidden;
+  }
+
+  .calendar{
+	background-color:#ffffff;
+	padding:10px;
+	position:relative;
+	overflow:hidden;
+  }
+
+  .form{
+	background-color:#ffffff;
+	padding:52px;
+	position:relative;
+	overflow:hidden;
+  }
+
   .quote{
 	font-style:italic;
 	font-size:16px;
