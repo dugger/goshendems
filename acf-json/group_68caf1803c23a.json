@@ -222,7 +222,7 @@
             "name": "featured_stories",
             "aria-label": "",
             "type": "relationship",
-            "instructions": "",
+            "instructions": "Pick up too 3 stories to feature on the home page.  Selecting less than 3 will include the most recent stories as featured.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -241,7 +241,7 @@
                 "search"
             ],
             "return_format": "id",
-            "min": 1,
+            "min": "",
             "max": 3,
             "allow_in_bindings": 0,
             "elements": "",
@@ -270,5 +270,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762017901
+    "modified": 1764875353
 }
