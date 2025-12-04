@@ -61,7 +61,7 @@ get_header();
     <?php endif; ?>
 
     <!-- Testimonials -->
-    <section class="testimonials" aria-label="Testimonials">
+    <!-- <section class="testimonials" aria-label="Testimonials">
       <div id="testimonialText" class="quote" aria-live="polite">
         "This community group helped me find my voice — the events are welcoming and energizing."
       </div>
@@ -70,7 +70,7 @@ get_header();
         <button id="prev" title="Previous testimonial" aria-label="Previous">&lsaquo;</button>
         <button id="next" title="Next testimonial" aria-label="Next">&rsaquo;</button>
       </div>
-    </section> 
+    </section>  -->
     
 
   <script>

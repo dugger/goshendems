@@ -4,7 +4,7 @@ Theme URI: https://github.com/dugger/goshendems
 Author: Dugger
 Author URI: https://github.com/dugger/goshendems
 Description: Goshen Democrats WordPress Theme
-Version: 1.0.0
+Version: 1.0.1
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -769,6 +769,11 @@ textarea {
 	margin: 0 0 1.5em;
 }
 
+.date {
+	font-style: italic;
+}
+
+
 /* Comments
 --------------------------------------------- */
 .comment-content a {
@@ -1345,7 +1350,7 @@ textarea {
 	background:var(--dark-blue);
 	color:white;
 	padding:18px;
-	
+
 	display:flex;
 	justify-content:space-between;
 	gap:12px;
@@ -1437,8 +1442,8 @@ textarea {
     .menu-toggle .hamburger-icon{ display:block; width:24px; height:24px; }
     .nav ul{ display:none; position:absolute; top:100%; right:12px; left:0px; background:#fff; box-shadow:var(--card-shadow); border:1px solid #e6e9ef; border-radius:10px; flex-direction:column; padding:8px; gap:4px; z-index: 1000; }
     .nav.toggled ul{ display:flex; }
-    /* Hide center logo li on mobile; brand handles logo */
-    .nav ul li:nth-child(3){ display:none; }
+    /* Hide logo in menu when menu is expanded (to avoid redundancy with brand logo) */
+    .nav.toggled .logo-menu-item{ display:none; }
   }
 
   .logo{
@@ -1464,8 +1469,8 @@ textarea {
       width:100%;
       justify-content:center;
     }
-    /* Move the logo (3rd item) to the top on mobile */
-    .nav li:nth-child(3){
+    /* Move the logo to the top on mobile */
+    .nav li.logo-menu-item{
       order:-1;
     }
     .nav a{

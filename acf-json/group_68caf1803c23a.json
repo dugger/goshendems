@@ -212,7 +212,7 @@
                     "allow_in_bindings": 0,
                     "rows": 2,
                     "placeholder": "",
-                    "new_lines": ""
+                    "new_lines": "br"
                 }
             ]
         },
@@ -269,5 +269,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1759845856
+    "display_title": "",
+    "modified": 1762017901
 }

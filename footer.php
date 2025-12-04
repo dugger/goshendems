@@ -14,9 +14,9 @@
     <!-- Footer -->
 		<footer aria-label="Footer">
 		<div>
-			<div style="font-weight:700; margin-bottom:6px;">Goshen Democrats</div>
+			<div style="font-weight:700; margin-bottom:6px;">Goshen City Democratic Party</div>
 			<div class="small">Connect. Volunteer. Vote.</div>
-			<div style="margin-top:8px;" class="small">Email: info@example.org</div>
+			<div style="margin-top:8px;" class="small">Email: goshendemocraticparty@gmail.com</div>
 		</div>
 
 		<div style="min-width:200px;">
