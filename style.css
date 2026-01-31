@@ -1143,7 +1143,7 @@ textarea {
   }
   .hero.hero--short{ min-height: 140px; }
   .hero.hero--short img{
-    height: 400px;
+    height: 500px;
     width: 100%;
     object-fit: cover;
     display: block;
