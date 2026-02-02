@@ -9,7 +9,7 @@
 
 if ( ! defined( '_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_VERSION', '1.1.0' );
+	define( '_VERSION', '1.1.1' );
 }
 
 /**
