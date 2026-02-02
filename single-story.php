@@ -28,18 +28,19 @@ get_header();
     </section>
 
 		<div class="story-body">
-    <h1><?php echo the_title(); ?></h1>
+    <h1><?php the_title(); ?></h1>
     <div class="date"><?php echo get_the_date(); ?></div>
 
     <!-- Body -->
 
-    <?php $body = get_field('body'); 
-    foreach ($body as $row) {
-      if ($row['acf_fc_layout'] == 'paragraph') {
-        echo $row['text'];
+    <?php
+    $body = get_field( 'body' );
+    if ( is_array( $body ) && ! empty( $body ) ) {
+      foreach ( $body as $row ) {
+        set_query_var( 'content_block_row', $row );
+        get_template_part( 'template-parts/content-block', $row['acf_fc_layout'] );
       }
     }
-    
     ?>
 		</div>
 
