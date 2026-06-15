@@ -1448,11 +1448,43 @@ textarea {
 
   .nav{
 	width:100%;
+	position:relative;
+  }
+
+  .header-social-links{
+	display:flex;
+	align-items:center;
+	gap:8px;
+	position:absolute;
+	right:0;
+	top:50%;
+	transform:translateY(-50%);
+	z-index:2;
+  }
+  .header-social-links__link{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	width:36px;
+	height:36px;
+	border-radius:8px;
+	color:inherit;
+	text-decoration:none;
+	transition:background-color 0.15s ease, color 0.15s ease;
+  }
+  .header-social-links__link:hover,
+  .header-social-links__link:focus-visible{
+	background:#eef3ff;
+	color:var(--blue);
+	text-decoration:none;
+  }
+  .header-social-links__icon{
+	display:block;
   }
 
   .nav ul{
     list-style:none;
-    padding:0;
+    padding:0 88px 0 0;
     margin:0;
     display:flex;
     justify-content:space-between;
@@ -1489,6 +1521,11 @@ textarea {
     .nav .brand .logo{ width:160px; height:auto; }
     .menu-toggle{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid #dbe5ff; background:#fff; border-radius:8px; padding:4px; }
     .menu-toggle .hamburger-icon{ display:block; width:24px; height:24px; }
+    .header-social-links{
+      position:static;
+      transform:none;
+      margin-left:auto;
+    }
     .nav ul{ display:none; position:absolute; top:100%; right:12px; left:0px; background:#fff; box-shadow:var(--card-shadow); border:1px solid #e6e9ef; border-radius:10px; flex-direction:column; padding:8px; gap:4px; z-index: 1000; }
     .nav.toggled ul{ display:flex; }
     /* Hide logo in menu when menu is expanded (to avoid redundancy with brand logo) */
@@ -1512,6 +1549,7 @@ textarea {
       justify-content:flex-start;
       align-items:stretch;
       gap:8px;
+      padding-right:8px;
     }
     .nav li{
       flex:0 0 auto;

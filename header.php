@@ -31,6 +31,7 @@
 			<nav id="site-navigation" class="nav" aria-label="Primary">
 				<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/logo_wide.png' ); ?>" alt="Goshen Dems Logo"></a>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'goshendems' ); ?>"><img class="hamburger-icon" src="<?php echo esc_url( get_template_directory_uri() . '/assets/hamburger.png' ); ?>" alt="" aria-hidden="true" /><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'goshendems' ); ?></span></button>
+				<?php goshendems_social_links(); ?>
 				<?php goshendems_primary_nav_menu(); ?>
 			</nav>
 		</header><!-- #masthead -->

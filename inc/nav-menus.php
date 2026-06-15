@@ -15,6 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'GOSHENDEMS_DONATE_URL', 'https://secure.actblue.com/donate/goshen-city-democratic-party-1' );
 
 /**
+ * Social profile URLs shown in the site header.
+ */
+define( 'GOSHENDEMS_FACEBOOK_URL', 'https://www.facebook.com/groups/goshendems/' );
+define( 'GOSHENDEMS_INSTAGRAM_URL', 'https://www.instagram.com/goshendems/' );
+
+/**
  * Default primary menu item definitions.
  *
  * @return array<int, array<string, mixed>>
@@ -246,6 +252,70 @@ function goshendems_primary_menu_fallback( $args ) {
 	}
 
 	echo '</ul>';
+}
+
+/**
+ * Social links for the site header.
+ *
+ * @return array<int, array<string, string>>
+ */
+function goshendems_get_social_links() {
+	return array(
+		array(
+			'label' => __( 'Facebook', 'goshendems' ),
+			'url'   => GOSHENDEMS_FACEBOOK_URL,
+			'icon'  => 'facebook',
+		),
+		array(
+			'label' => __( 'Instagram', 'goshendems' ),
+			'url'   => GOSHENDEMS_INSTAGRAM_URL,
+			'icon'  => 'instagram',
+		),
+	);
+}
+
+/**
+ * Output an inline SVG icon for a social network.
+ *
+ * @param string $icon Icon slug (`facebook` or `instagram`).
+ */
+function goshendems_social_icon_svg( $icon ) {
+	$icons = array(
+		'facebook'  => '<svg class="header-social-links__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
+		'instagram' => '<svg class="header-social-links__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>',
+	);
+
+	if ( empty( $icons[ $icon ] ) ) {
+		return;
+	}
+
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static SVG markup.
+	echo $icons[ $icon ];
+}
+
+/**
+ * Output header social media links.
+ */
+function goshendems_social_links() {
+	$links = goshendems_get_social_links();
+	if ( empty( $links ) ) {
+		return;
+	}
+
+	echo '<div class="header-social-links" role="navigation" aria-label="' . esc_attr__( 'Social media', 'goshendems' ) . '">';
+
+	foreach ( $links as $link ) {
+		printf(
+			'<a class="header-social-links__link header-social-links__link--%1$s" href="%2$s" target="_blank" rel="noopener noreferrer" aria-label="%3$s">',
+			esc_attr( $link['icon'] ),
+			esc_url( $link['url'] ),
+			esc_attr( $link['label'] )
+		);
+		goshendems_social_icon_svg( $link['icon'] );
+		echo '</a>';
+	}
+
+	echo '</div>';
 }
 
 /**
