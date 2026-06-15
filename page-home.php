@@ -29,10 +29,23 @@ get_header();
         <?php if ( ! empty( $hero['description'] ) ) : ?>
           <p><?php echo esc_html( $hero['description'] ); ?></p>
         <?php endif; ?>
-        <?php if ( ! empty( $hero['button_url'] ) && ! empty( $hero['button_text'] ) ) : ?>
-          <a class="cta-btn" href="<?php echo esc_url( $hero['button_url'] ); ?>">
-            <?php echo esc_html( $hero['button_text'] ); ?>
-          </a>
+        <?php
+        $has_primary_btn   = ! empty( $hero['button_url'] ) && ! empty( $hero['button_text'] );
+        $has_secondary_btn = ! empty( $hero['button_2_url'] ) && ! empty( $hero['button_2_text'] );
+        ?>
+        <?php if ( $has_primary_btn || $has_secondary_btn ) : ?>
+          <div class="cta-actions">
+            <?php if ( $has_primary_btn ) : ?>
+              <a class="cta-btn" href="<?php echo esc_url( $hero['button_url'] ); ?>">
+                <?php echo esc_html( $hero['button_text'] ); ?>
+              </a>
+            <?php endif; ?>
+            <?php if ( $has_secondary_btn ) : ?>
+              <a class="cta-btn cta-btn--secondary" href="<?php echo esc_url( $hero['button_2_url'] ); ?>">
+                <?php echo esc_html( $hero['button_2_text'] ); ?>
+              </a>
+            <?php endif; ?>
+          </div>
         <?php endif; ?>
       </div>
     </section>

@@ -127,6 +127,48 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
+                },
+                {
+                    "key": "field_674a1c01b2txt",
+                    "label": "Second Button Text",
+                    "name": "button_2_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Optional second call-to-action. Shown only when both text and URL are set.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_674a1c02b2url",
+                    "label": "Second Button Url",
+                    "name": "button_2_url",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -270,5 +312,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1764875353
+    "modified": 1781472000
 }

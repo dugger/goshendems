@@ -1232,8 +1232,23 @@ textarea {
 	font-weight:700;
 	cursor:pointer;
 	box-shadow:0 6px 14px rgba(47,138,58,0.18);
-	align-self:flex-end;
 	text-decoration: none;
+  }
+  .hero .cta-actions{
+	display:flex;
+	flex-wrap:wrap;
+	gap:10px;
+	justify-content:flex-end;
+  }
+  .hero .cta-btn--secondary{
+	background:#fff;
+	color:var(--dark-blue);
+	box-shadow:0 6px 14px rgba(12,18,30,0.14);
+  }
+  .hero .cta-btn--secondary:hover,
+  .hero .cta-btn--secondary:focus-visible{
+	background:var(--cream);
+	color:var(--dark-blue);
   }
   
   /* About region */
