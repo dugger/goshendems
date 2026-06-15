@@ -49,7 +49,7 @@ function goshendems_get_default_primary_menu_items() {
 		),
 		array(
 			'title' => __( 'Candidates', 'goshendems' ),
-			'url'   => home_url( '/' ),
+			'url'   => home_url( '/candidates/' ),
 			'type'  => 'custom',
 		),
 		array(
@@ -218,6 +218,40 @@ function goshendems_maybe_fix_resources_menu_link() {
 	}
 }
 add_action( 'admin_init', 'goshendems_maybe_fix_resources_menu_link' );
+
+/**
+ * Update the Candidates menu link when it still points to the home page.
+ */
+function goshendems_maybe_fix_candidates_menu_link() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		return;
+	}
+
+	$locations = get_nav_menu_locations();
+	if ( empty( $locations['menu-1'] ) ) {
+		return;
+	}
+
+	$items          = wp_get_nav_menu_items( $locations['menu-1'] );
+	$candidates_url = home_url( '/candidates/' );
+
+	if ( empty( $items ) ) {
+		return;
+	}
+
+	foreach ( $items as $item ) {
+		if ( 'Candidates' !== $item->title || untrailingslashit( $item->url ) === untrailingslashit( $candidates_url ) ) {
+			continue;
+		}
+
+		if ( untrailingslashit( $item->url ) !== untrailingslashit( home_url( '/' ) ) ) {
+			continue;
+		}
+
+		update_post_meta( $item->ID, '_menu_item_url', $candidates_url );
+	}
+}
+add_action( 'admin_init', 'goshendems_maybe_fix_candidates_menu_link' );
 
 /**
  * Prepend the light logo item shown at the top of the mobile menu drawer.

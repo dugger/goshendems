@@ -1090,6 +1090,327 @@ textarea {
     .stories-grid{ grid-template-columns: 1fr; }
     .stories-grid--featured{ padding: 24px; }
   }
+
+  /* Candidates archive grid */
+  .candidates-intro{
+    margin: 0 0 24px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .candidates-intro p:last-child{
+    margin-bottom: 0;
+  }
+  .candidates-grid{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap:24px;
+    margin: 24px 0;
+  }
+  .candidate-card{
+    border:1px solid #e6e9ef;
+    border-radius:10px;
+    padding:0;
+    background:#fff;
+    box-shadow: var(--card-shadow);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    min-height:100%;
+  }
+  .candidate-card__photo-link{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+  }
+  .candidate-card__photo{
+    width:100%;
+    aspect-ratio: 4 / 5;
+    overflow:hidden;
+    background-color:#f0f0f0;
+  }
+  .candidate-card__photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .candidate-card__placeholder{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-size:14px;
+  }
+  .candidate-card__content{
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1 1 auto;
+  }
+  .candidate-card__title{
+    margin:0;
+    font-size:22px;
+    line-height:1.25;
+  }
+  .candidate-card__title a{
+    color:inherit;
+    text-decoration:none;
+  }
+  .candidate-card__title a:hover{
+    text-decoration:underline;
+  }
+  .candidate-card__race{
+    margin:0;
+    color:var(--dark-blue);
+    font-size:15px;
+    font-weight:600;
+    line-height:1.3;
+  }
+  .candidate-card__bio{
+    margin:0;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.5;
+  }
+  .candidate-card__bio p{
+    margin:0;
+  }
+  @media (max-width: 1024px){
+    .candidates-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width: 600px){
+    .candidates-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* Single candidate profile */
+  .candidate-back-link{
+    margin: 8px 0 20px;
+  }
+  .candidate-back-link a{
+    color: var(--dark-blue);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .candidate-back-link a:hover,
+  .candidate-back-link a:focus-visible{
+    text-decoration: underline;
+  }
+  .candidate-profile{
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    background: var(--cream);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(12, 18, 30, 0.03);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .candidate-profile__photo{
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    aspect-ratio: 4 / 5;
+  }
+  .candidate-profile__photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .candidate-profile__photo--placeholder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 15px;
+    background: #f0f0f0;
+  }
+  .candidate-profile__body{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .candidate-profile__header{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .candidate-profile__name{
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--dark-blue);
+  }
+  .candidate-profile__race{
+    margin: 0;
+    display: inline-block;
+    align-self: flex-start;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #eef3ff;
+    color: var(--dark-blue);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .candidate-profile__phone{
+    margin: 0;
+    font-size: 16px;
+  }
+  .candidate-profile__phone a{
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .candidate-profile__phone a:hover,
+  .candidate-profile__phone a:focus-visible{
+    color: var(--blue);
+    text-decoration: underline;
+  }
+  .candidate-profile__section-title{
+    margin: 0 0 12px;
+    font-size: 1.125rem;
+    color: var(--dark-blue);
+    line-height: 1.3;
+  }
+  .candidate-profile__bio{
+    color: #123;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .candidate-profile__bio p{
+    margin: 0 0 1em;
+  }
+  .candidate-profile__bio p:last-child{
+    margin-bottom: 0;
+  }
+  .candidate-links__grid{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .candidate-link-card{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid #e6e9ef;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .candidate-link-card:hover,
+  .candidate-link-card:focus-visible{
+    border-color: var(--blue);
+    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.12);
+    transform: translateY(-2px);
+  }
+  .candidate-link-card__thumb{
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+  .candidate-link-card__thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .candidate-link-card__thumb-placeholder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .candidate-link-card__title{
+    display: block;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--dark-blue);
+  }
+  .candidate-nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .candidate-nav__spacer{
+    display: block;
+  }
+  .candidate-nav__link{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 18px;
+    border: 1px solid #e6e9ef;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .candidate-nav__link:hover,
+  .candidate-nav__link:focus-visible{
+    border-color: var(--blue);
+    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.1);
+  }
+  .candidate-nav__link--next{
+    text-align: right;
+    grid-column: 2;
+  }
+  .candidate-nav__label{
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .candidate-nav__title{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.3;
+  }
+  @media (max-width: 760px){
+    .candidate-profile{
+      grid-template-columns: 1fr;
+      padding: 24px;
+      gap: 24px;
+    }
+    .candidate-profile__photo{
+      max-width: 280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .candidate-nav{
+      grid-template-columns: 1fr;
+    }
+    .candidate-nav__link--next{
+      grid-column: auto;
+      text-align: left;
+    }
+  }
   
   html,body{
 	height:100%;

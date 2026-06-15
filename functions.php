@@ -180,6 +180,11 @@ require get_template_directory() . '/inc/nav-menus.php';
 require get_template_directory() . '/inc/resources.php';
 
 /**
+ * Candidates CPT helpers and Open Graph link thumbnails.
+ */
+require get_template_directory() . '/inc/candidates.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';

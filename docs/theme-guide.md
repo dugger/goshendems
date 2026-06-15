@@ -15,7 +15,9 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | Other pages | `page.php` *(minimal/broken — avoid for new pages)* |
 | Story archive | `archive-story.php` |
 | Resource archive | `archive-resource.php` |
+| Candidate archive | `archive-candidate.php` |
 | Single story | `single-story.php` |
+| Single candidate | `single-candidate.php` |
 | Elected positions archive | `archive-elected-positions.php` |
 | Search | `search.php` |
 | 404 | `404.php` |
@@ -40,6 +42,7 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 ```
 template-parts/
 ├── content-story-card.php          # Story card on archive/home
+├── content-candidate-card.php      # Candidate card on archive
 ├── content-featured-stories.php    # Home featured stories grid
 ├── content-none.php
 ├── content-search.php

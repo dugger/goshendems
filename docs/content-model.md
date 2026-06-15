@@ -113,6 +113,49 @@ Cards link directly to the file or URL (new tab). Category badges shown; empty c
 
 ---
 
+### Candidate (`candidate`) — **active**
+
+- **JSON:** `acf-json/post_type_674a1c10candidate.json`
+- **Archive slug:** `candidates` → `/candidates/`
+- **Archive template:** `archive-candidate.php` (9 per page, paginated)
+- **Single template:** `single-candidate.php`
+- **Single URLs:** `/candidate/{slug}/`
+- **Field group:** Candidate fields (`group_674a1c20candidate`)
+- **Settings:** ACF Options sub-page under Candidates → Settings (`group_674a1c30candopts`)
+- **Name:** WordPress post title
+
+#### Candidate fields
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `picture` | Image (returns ID) | Headshot or portrait |
+| `race` | Text | Office or race name |
+| `bio` | Textarea | Candidate biography |
+| `phone` | Text | Contact phone number |
+| `links` | Repeater | External links (see below); drag rows to reorder |
+
+#### Link repeater (`links`)
+
+| Sub-field | Type | Notes |
+|-----------|------|-------|
+| `title` | Text | Link label |
+| `url` | URL | Destination URL |
+| `thumbnail` | Image | Auto-filled from Open Graph on save |
+| `og_source_url` | Text | Internal; hidden in admin; tracks URL used for thumbnail |
+
+Rows are drag-sortable in the admin. Display order matches row order on the single candidate page.
+
+#### Candidates settings (options page)
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `candidates_intro` | WYSIWYG | Intro copy on archive |
+| `candidates_order` | Relationship → `candidate` | Manual archive and prev/next order |
+
+**After deploy:** Custom Fields → Sync, then **Settings → Permalinks → Save**.
+
+---
+
 ### Elected Positions (`elected-positions`) — **inactive / dormant**
 
 - **JSON:** `acf-json/post_type_693461d475a9e.json` (`"active": false`)
@@ -197,9 +240,12 @@ acf-json/
 ├── group_68e4df466f654.json    # Story fields
 ├── group_674a1b30resource.json # Resource fields
 ├── group_674a1b40resopts.json  # Resources settings (options)
+├── group_674a1c20candidate.json # Candidate fields
+├── group_674a1c30candopts.json # Candidates settings (options)
 ├── group_693462ae5e6db.json    # Elected Position Fields (inactive)
 ├── post_type_68e4df30960d2.json
 ├── post_type_674a1b10resource.json
+├── post_type_674a1c10candidate.json
 ├── post_type_693461d475a9e.json
 ├── taxonomy_674a1b20rescat.json
 └── taxonomy_69347cdeefd62.json
@@ -217,6 +263,7 @@ Primary nav uses **Appearance → Menus**, location **Primary** (`menu-1`).
 | Events | Page: `/calendar/` |
 | Stories | Custom link: `/stories/` (story archive) |
 | Resources | Custom link: `/resources/` (resource archive) |
+| Candidates | Custom link: `/candidates/` (candidate archive) |
 | Contact | Page: `/contact-us/` |
 | Donate | Custom link: ActBlue (opens in new tab) |
 
