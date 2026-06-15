@@ -91,23 +91,23 @@ Pick a direction before implementing.
 
 | # | Task | Options | Effort |
 |---|------|---------|--------|
-| 16 | **Elected Positions feature** | A) Activate CPT + field group + enqueue filter JS, or B) Remove archive template + JS until launch | S–M |
-| 17 | **Signup / newsletter bar** | A) Wire `signup-bar.php` to Ninja Forms/mailing list, B) Delete orphan partial + CSS | M |
-| 18 | **Primary navigation** | A) Migrate to WP Menus (`wp_nav_menu`), B) Keep hardcoded and document | M |
+| 16 | **Elected Positions feature** | **Deferred — project backlog**, not audit | — | Out of audit scope |
+| 17 | **Signup / newsletter bar** | Removed orphan stub; contact form owns mailing list signup | M | Done |
+| 18 | **Primary navigation** | A) Migrate to WP Menus (`wp_nav_menu`), B) Keep hardcoded and document | M | Done — `inc/nav-menus.php` |
 | 19 | **Story CTA blocks** | Audit stories with raw URL link text; set proper `button_label` in ACF | S |
 | 20 | **Clear misleading Posts page setting** (page ID 54) in WP admin | Admin | S |
 
 ### Tier 4 — Security & admin hygiene
 
-| # | Task | Area | Effort |
-|---|------|------|--------|
-| 21 | Disable XML-RPC if unused | Security | S |
-| 22 | Disable or redirect author archive enumeration | Security | S |
-| 23 | Audit 6 WP user accounts — roles, remove unused | Admin | S |
-| 24 | Set default comment status to closed | Admin | S |
-| 25 | Deactivate DreamHost Panel Login on local (optional) | Admin | S |
-| 26 | Run `composer install` to enable PHPCS | DevEx | S |
-| 27 | Update stale theme metadata in `style.css` / `readme.txt` (WP 7, PHP 8.4) | Theme | S |
+| # | Task | Area | Effort | Status |
+|---|------|------|--------|--------|
+| 21 | Disable XML-RPC if unused | Security | S | Open — plugin/host |
+| 22 | Disable or redirect author archive enumeration | Security | S | Done — theme redirect |
+| 23 | Audit 6 WP user accounts — roles, remove unused | Admin | S | Open — WP admin |
+| 24 | Set default comment status to closed | Admin | S | Open — WP admin |
+| 25 | Deactivate DreamHost Panel Login on local (optional) | Admin | S | Open — WP admin |
+| 26 | Run `composer install` to enable PHPCS | DevEx | S | Done |
+| 27 | Update stale theme metadata in `style.css` / `readme.txt` | Theme | S | Done |
 
 ### Tier 5 — Defer / production only
 
@@ -122,12 +122,27 @@ Not in scope for local audit fixes; address before or during prod deploy.
 
 ---
 
+## Out of theme — tracked, not in repo
+
+Handle in WP admin, content editing, or server/plugins:
+
+| # | Task | Where |
+|---|------|-------|
+| 14 | Yoast meta descriptions (21 stories) | Story editor → Yoast |
+| 15 | Remove stale “building this site” copy | Home + About ACF fields |
+| 19 | Story CTA `button_label` (raw URLs as link text) | Per-story ACF content |
+| 20 | Misleading Posts page setting (page 54) | Settings → Reading |
+| 21 | Disable XML-RPC | Plugin / host / `wp-config` |
+| 23–25 | Users, comments, DreamHost plugin | WP admin |
+
+---
+
 ## Decision log (needed before Tier 3)
 
 | Decision | Question | Recommendation |
 |----------|----------|----------------|
-| Elected Positions | Launch soon or shelve? | If not within 3 months, remove dead code to reduce confusion |
-| Newsletter signup | Real feature or cut? | Integrate with existing Ninja Form mailing list checkbox flow |
+| Elected Positions | Launch soon or shelve? | **Deferred** — separate project decision; dormant code left as-is |
+| Newsletter signup | Real feature or cut? | **Cut** — removed stub; Contact form mailing list checkbox remains |
 | Nav management | Editors need nav control? | WP Menus if yes; keep hardcoded if nav rarely changes |
 
 ---
@@ -163,4 +178,4 @@ Not in scope for local audit fixes; address before or during prod deploy.
 
 ---
 
-*Next step: Work through Tier 1 quick wins, then Tier 2. Resolve Tier 3 decisions before implementing those items.*
+*Theme audit fixes complete. Remaining items are content/admin (out of theme) or future project work (elected positions).*

@@ -1,36 +1,45 @@
 === Goshen Dems ===
 
-Contributors: automattic
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
-
-Requires at least: 4.5
-Tested up to: 5.4
-Requires PHP: 5.6
-Stable tag: 1.0.0
+Contributors: dugger
+Tags: custom-background, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks
+Requires at least: 6.0
+Tested up to: 7.0
+Requires PHP: 8.0
+Stable tag: 1.2.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
-Goshen Democrats WordPress Theme
+Custom WordPress theme for the Goshen City Democratic Party.
 
 == Description ==
 
-Description
+ACF Pro-driven theme for goshendems.org with custom page templates, a Story custom post type with flexible content blocks, Simple Calendar integration, and Ninja Forms contact flows.
+
+Built on Underscores (_s) and maintained in GitHub at https://github.com/dugger/goshendems
 
 == Installation ==
 
-1. In your admin panel, go to Appearance > Themes and click the Add New button.
-2. Click Upload Theme and Choose File, then select the theme's .zip file. Click Install Now.
-3. Click Activate to use your new theme right away.
+1. Clone or copy the theme into `wp-content/themes/goshendems`.
+2. Activate the theme in Appearance → Themes.
+3. Sync ACF field groups from `acf-json/` if prompted (Custom Fields → Sync).
 
 == Frequently Asked Questions ==
 
-= Does this theme support any plugins? =
+= Does this theme require ACF Pro? =
 
-Goshen Dems includes support for WooCommerce and for Infinite Scroll in Jetpack.
+Yes. Page fields, the Story CPT, and flexible content blocks depend on ACF Pro with JSON sync enabled.
+
+= Which plugins does this theme integrate with? =
+
+Advanced Custom Fields Pro, Ninja Forms, Yoast SEO, Simple Calendar (Google Calendar Events), and WP Super Cache. See `docs/plugins.md` in the theme repository.
 
 == Changelog ==
 
-= 1.0 - September 17 2025 =
+= 1.2.0 - June 2026 =
+* Local site audit fixes: template hygiene, escaping, 404/search, story card a11y, ACF slug location rules
+* Agent documentation in `docs/` and `AGENTS.md`
+
+= 1.0 - September 2025 =
 * Initial release
 
 == Credits ==

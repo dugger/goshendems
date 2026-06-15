@@ -27,7 +27,7 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 |------|---------|
 | `functions.php` | Theme setup, enqueues, story archive query (9/page), ACF WYSIWYG toolbar |
 | `header.php` | `<head>`, Typekit, hardcoded nav, skip link |
-| `footer.php` | Site footer, signup bar partial |
+| `footer.php` | Site footer |
 | `inc/template-functions.php` | OpenGraph tags, custom image sizes, story description helper |
 | `inc/template-tags.php` | Post meta template tags (_s) |
 | `style.css` | All theme CSS (~1500 lines) |
@@ -43,7 +43,6 @@ template-parts/
 ├── content-none.php
 ├── content-search.php
 ├── elected-positions.php           # Elected position row partial
-├── signup-bar.php                  # Footer signup (stub — alert only)
 └── content-block-*.php             # Story flexible content layouts
 ```
 
@@ -178,7 +177,6 @@ See [audit/findings.md](audit/findings.md). Phase 1 summary:
 - `page.php` broken; `<main>` unclosed on home and single-story templates
 - Home page JS error from orphaned testimonial script
 - Escaping gaps — see escaping table in [findings.md](audit/findings.md)
-- `signup-bar.php` never included
 - Calendar page missing empty guard
 
 ---

@@ -172,19 +172,32 @@ acf-json/
 
 ---
 
-## Navigation (hardcoded)
+## Navigation (WordPress Menus)
 
-Primary nav is **not** from WP Menus — it is static HTML in `header.php`:
+Primary nav uses **Appearance → Menus**, location **Primary** (`menu-1`).
 
-| Label | href |
-|-------|------|
-| About | `/about` |
-| Events | `/calendar` |
-| Stories | `/stories` |
-| Contact | `/contact-us` |
-| Donate | ActBlue (external) |
+| Label | Target |
+|-------|--------|
+| About | Page: `/about/` |
+| Events | Page: `/calendar/` |
+| Stories | Custom link: `/stories/` (story archive) |
+| Contact | Page: `/contact-us/` |
+| Donate | Custom link: ActBlue (opens in new tab) |
 
-`register_nav_menus('menu-1')` exists in `functions.php` but is unused.
+**Theme behavior:**
+- Rendered via `goshendems_primary_nav_menu()` in `header.php` (`inc/nav-menus.php`)
+- Mobile drawer prepends a light logo item (theme-controlled, not in the menu editor)
+- Desktop brand logo remains in the header bar (theme-controlled)
+- On first admin visit after theme update, a default **Primary** menu is created if none exists
+
+**Edit nav:** WP Admin → Appearance → Menus → assign to **Primary**. Placeholder menus (e.g. "Menu 1") are auto-replaced on first admin visit, or use the theme fallback until then.
+
+**WP-CLI (Local Site Shell):**
+
+```bash
+wp menu list
+wp menu item list primary
+```
 
 ---
 

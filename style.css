@@ -3,10 +3,11 @@ Theme Name: Goshen Dems
 Theme URI: https://github.com/dugger/goshendems
 Author: Dugger
 Author URI: https://github.com/dugger/goshendems
-Description: Goshen Democrats WordPress Theme
+Description: Custom theme for the Goshen City Democratic Party website. ACF-driven pages, story flexible content, and event calendar integration.
 Version: 1.2.0
-Tested up to: 5.4
-Requires PHP: 5.6
+Tested up to: 7.0
+Requires at least: 6.0
+Requires PHP: 8.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: goshendems
@@ -1209,41 +1210,6 @@ textarea {
 	text-decoration: none;
   }
   
-  /* Join bar */
-  .join-bar{
-	margin-top:12px;
-	background:var(--blue);
-	color:white;
-	padding:14px;
-	border-radius:8px;
-	display:flex;
-	gap:12px;
-	align-items:center;
-  }
-  .join-bar .title{ font-weight:700; font-size:16px; }
-  .join-bar form{
-	margin-left:auto;
-	display:flex;
-	gap:8px;
-	align-items:center;
-  }
-  .join-bar input[type="email"]{
-	padding:10px 12px;
-	border-radius:6px;
-	border:none;
-	min-width:200px;
-	font-size:14px;
-  }
-  .join-bar button{
-	padding:10px 14px;
-	border-radius:6px;
-	border:none;
-	background:var(--dark-blue);
-	color:white;
-	font-weight:700;
-	cursor:pointer;
-  }
-  
   /* About region */
   .about{
 	margin-top:20px;
@@ -1448,8 +1414,6 @@ textarea {
   @media (max-width:760px){
 	.about{ grid-template-columns: 1fr; }
 	.cards{ grid-template-columns: 1fr; }
-	.join-bar{ flex-direction:column; align-items:stretch; gap:10px; }
-	.join-bar form{ margin-left:0; justify-content:flex-end; }
 	header{ gap:10px; flex-direction:column; align-items:stretch; }
 	nav{ justify-content:flex-end; }
 	.hero .cta{

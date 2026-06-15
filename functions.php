@@ -170,6 +170,11 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/acf-page-slug-location.php';
 
 /**
+ * Primary navigation (WP Menus).
+ */
+require get_template_directory() . '/inc/nav-menus.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
@@ -202,3 +207,14 @@ function my_toolbars( $toolbars )
 }
 
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+
+/**
+ * Redirect author archives to home to reduce username enumeration.
+ */
+function goshendems_disable_author_archives() {
+	if ( is_author() ) {
+		wp_safe_redirect( home_url( '/' ), 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'goshendems_disable_author_archives' );

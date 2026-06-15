@@ -135,6 +135,23 @@ Theme updates are pulled from GitHub (`dugger/goshendems`). After pushing theme 
 
 ---
 
+## Code quality (PHPCS)
+
+From the theme repo root:
+
+```bash
+composer install    # once — installs PHPCS + WordPress coding standards
+composer phpcs      # lint PHP against phpcs.xml.dist
+composer phpcbf     # auto-fix safe formatting issues
+composer lint:php   # PHP syntax check (parallel-lint)
+```
+
+Config: `phpcs.xml.dist` — text domain `goshendems`, prefix `goshendems`, PHP 8.0+, WP 6.0+.
+
+The full theme may report legacy Underscores violations. When fixing audit items, run PHPCS on the files you changed.
+
+---
+
 ## Do not
 
 - Commit `.cursor/mcp.json`

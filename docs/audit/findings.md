@@ -6,23 +6,17 @@ Running log from the local site audit. Severity: **Critical** | **High** | **Med
 
 ## Phase 0 findings
 
-### [High] Elected Positions CPT inactive but theme templates exist
-- **Area:** ACF / Theme
+### [High] Elected Positions CPT inactive but theme templates exist — **Deferred (project)**
+- **Area:** ACF / Theme — **out of audit scope**
 - **Location:** `acf-json/post_type_693461d475a9e.json`, `acf-json/group_693462ae5e6db.json`, `archive-elected-positions.php`
 - **Issue:** CPT and field group marked `"active": false` in JSON; archive template and filter JS still present. **Confirmed:** 0 posts in DB; REST endpoint 404.
-- **Impact:** Feature appears built but is non-functional; confuses editors and AI agents.
-- **Recommendation:** Decide launch intent — activate CPT + field group in ACF, or remove archive template and JS until ready.
-- **Effort:** S
-- **Status:** Open
+- **Audit disposition:** Deferred to a separate **project decision** (activate vs remove). Not blocking audit closure.
+- **Status:** Deferred
 
-### [High] Elected positions filter JS not enqueued
-- **Area:** Theme
+### [High] Elected positions filter JS not enqueued — **Deferred (project)**
+- **Area:** Theme — **out of audit scope** (follows elected-positions project decision)
 - **Location:** `js/elected-positions-filter.js`, `functions.php`
-- **Issue:** Filter script exists but is never registered/enqueued. Server-side `?level=` filter in PHP still works on page load.
-- **Impact:** Clicking filter buttons won't update view without full page reload via URL.
-- **Recommendation:** Enqueue when `is_post_type_archive('elected-positions')` (after CPT activated).
-- **Effort:** S
-- **Status:** Open
+- **Status:** Deferred
 
 ### [High] ACF location rules use hardcoded page IDs
 - **Area:** ACF
@@ -50,14 +44,12 @@ Running log from the local site audit. Severity: **Critical** | **High** | **Med
 - **Effort:** S
 - **Status:** Open
 
-### [Medium] Signup bar partial never included
+### [Medium] Signup bar partial never included — **Resolved**
 - **Area:** Theme / UX
-- **Location:** `template-parts/signup-bar.php`
-- **Issue:** Partial exists with stub form (`alert()` on submit) but is **not** `get_template_part()`'d anywhere.
-- **Impact:** Dead code; CSS for `.join-bar` unused on site.
-- **Recommendation:** Include in `footer.php` or `page-home.php` when ready, or delete partial.
-- **Effort:** S
-- **Status:** Open
+- **Location:** ~~`template-parts/signup-bar.php`~~ (removed)
+- **Issue:** Partial existed with stub form (`alert()` on submit) but was **not** included anywhere.
+- **Resolution:** Deleted orphan partial and `.join-bar` CSS (June 2026). Mailing list signup remains on Contact form (Ninja Forms).
+- **Status:** Resolved
 
 ### [Low] Broken Sass build pipeline
 - **Area:** Theme / DevEx
@@ -213,12 +205,11 @@ Running log from the local site audit. Severity: **Critical** | **High** | **Med
 
 ## Phase 2 findings — ACF & content model
 
-### [High] Elected Positions feature is dormant end-to-end
-- **Area:** ACF / Content
-- **Issue:** CPT inactive, field group inactive, 0 posts, 0 level terms in use, REST 404, JS not enqueued.
-- **Recommendation:** Treat as **not a live feature** in agent docs until activated; see [content-model.md](../content-model.md).
-- **Effort:** S (documentation) / M (activation)
-- **Status:** Open
+### [High] Elected Positions feature is dormant end-to-end — **Deferred (project)**
+- **Area:** ACF / Content — **out of audit scope**
+- **Issue:** CPT inactive, field group inactive, 0 posts, REST 404, JS not enqueued.
+- **Audit disposition:** Documented as dormant; activation/removal is a separate project decision.
+- **Status:** Deferred
 
 ### [Medium] ACF location rule migration needed
 - **Area:** ACF

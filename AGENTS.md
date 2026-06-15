@@ -66,7 +66,7 @@ Read the relevant doc **before** making changes:
 - Prefer **page template** or **page slug** ACF location rules over hardcoded page IDs.
 - Do not hardcode Ninja Form IDs in templates when an ACF field exists for the shortcode.
 - Enqueue new JS/CSS in `functions.php` via `goshendems_scripts()` — do not add orphan script files.
-- Run PHPCS before committing PHP changes (`composer phpcs` or project `phpcs.xml.dist`).
+- Run PHPCS before committing PHP changes (`composer phpcs` — run `composer install` first).
 
 ### ACF
 
@@ -118,7 +118,7 @@ Top items to address first:
 3. Fix broken `page.php`
 4. Update stale "building this site" copy
 5. Escaping pass on templates
-6. Decide elected-positions: activate or remove dead code
+6. Elected Positions deferred to separate project (not audit scope)
 
 ---
 
