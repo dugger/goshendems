@@ -262,10 +262,10 @@ Primary nav uses **Appearance → Menus**, location **Primary** (`menu-1`).
 | About | Page: `/about/` |
 | Events | Page: `/calendar/` |
 | Stories | Custom link: `/stories/` (story archive) |
-| Resources | Custom link: `/resources/` (resource archive) |
-| Candidates | Custom link: `/candidates/` (candidate archive) |
 | Contact | Page: `/contact-us/` |
 | Donate | Custom link: ActBlue (opens in new tab) |
+
+Resources (`/resources/`) and Candidates (`/candidates/`) can be added manually in **Appearance → Menus** when ready. The theme no longer auto-adds or restores them.
 
 **Theme behavior:**
 - Rendered via `goshendems_primary_nav_menu()` in `header.php` (`inc/nav-menus.php`)
