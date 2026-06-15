@@ -48,9 +48,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "page_slug",
                 "operator": "==",
-                "value": "100"
+                "value": "contact-us"
             }
         ]
     ],

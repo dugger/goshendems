@@ -165,6 +165,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
+ * ACF page slug location rule (slug-based field group locations).
+ */
+require get_template_directory() . '/inc/acf-page-slug-location.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';

@@ -18,9 +18,11 @@ get_header();
 <main id="primary" class="site-main">
   <div class="container light-blue">
     <section class="calendar" aria-label="Calendar">
-      <?php 
-        $calendar = get_field('calendar')[0];
-        echo do_shortcode('[calendar id="' . $calendar . '"]');
+      <?php
+      $calendar_field = get_field( 'calendar' );
+      if ( is_array( $calendar_field ) && ! empty( $calendar_field[0] ) ) {
+        echo do_shortcode( '[calendar id="' . absint( $calendar_field[0] ) . '"]' );
+      }
       ?>
     </section>
 </div>

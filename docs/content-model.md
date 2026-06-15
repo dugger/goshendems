@@ -20,22 +20,28 @@ Front page: **ID 14**. Posts page setting: **ID 54** (`stories`) — **misleadin
 
 ---
 
-## ACF location rule migration
+## ACF location rules
 
-Current page field groups use **numeric page IDs** (fragile on import). Recommended replacements:
+Page field groups use **slug-based or front-page rules** (not page IDs):
 
-| Field group | Current rule | Recommended rule |
-|-------------|--------------|------------------|
-| Home Page | page == `14` | page slug == `home` **or** front page |
-| Calendar Page | page == `19` | page slug == `calendar` |
-| About Page | page == `76` | page slug == `about` |
-| Contact Page | page == `100` | page slug == `contact-us` |
+| Field group | Location rule |
+|-------------|----------------|
+| Home Page | `page_type` == `front_page` |
+| Calendar Page | `page_slug` == `calendar` |
+| About Page | `page_slug` == `about` |
+| Contact Page | `page_slug` == `contact-us` |
 
-Story and elected-position groups already use `post_type` rules (good pattern).
+Custom location rule: `inc/acf-page-slug-location.php` registers the `page_slug` matcher with ACF.
 
-After changing rules in ACF admin, re-sync JSON and verify field groups appear on the correct pages locally.
+Story and elected-position groups use `post_type` rules (good pattern).
+
+After changing rules in JSON, **Custom Fields → Sync** in admin if prompted.
 
 ---
+
+## ACF location rule migration (complete)
+
+Previously used numeric page IDs (fragile on import). Migrated June 2026 — see table above.
 
 ## Custom post types
 
@@ -104,7 +110,7 @@ Archive supports `?level={slug}` filter; JS filter in `js/elected-positions-filt
 
 ### Home Page (`group_68caf1803c23a`)
 
-Location: page ID **14**
+Location: **front page** (`page_type`)
 
 | Field | Type | Notes |
 |-------|------|-------|
@@ -114,7 +120,7 @@ Location: page ID **14**
 
 ### About Page (`group_68e54daba70f6`)
 
-Location: page ID **76**
+Location: **page slug** `about`
 
 | Field | Type |
 |-------|------|
@@ -123,7 +129,7 @@ Location: page ID **76**
 
 ### Calendar Page (`group_68dd3f01ce692`)
 
-Location: page ID **19**
+Location: **page slug** `calendar`
 
 | Field | Type |
 |-------|------|
@@ -131,7 +137,7 @@ Location: page ID **19**
 
 ### Contact Page (`group_6904d63ed5bfd`)
 
-Location: page ID **100**
+Location: **page slug** `contact-us`
 
 | Field | Type | Template usage |
 |-------|------|----------------|

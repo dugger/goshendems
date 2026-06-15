@@ -252,9 +252,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "page_type",
                 "operator": "==",
-                "value": "14"
+                "value": "front_page"
             }
         ]
     ],

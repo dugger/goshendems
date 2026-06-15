@@ -1,35 +1,19 @@
 <?php
 /**
- * Template part for displaying results in search pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Template part for displaying non-story search results
  *
  * @package Goshen_Dems
  */
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			goshendems_posted_on();
-			goshendems_posted_by();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
-
-	<?php goshendems_post_thumbnail(); ?>
-
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php goshendems_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'search-result' ); ?>>
+	<h2 class="search-result__title">
+		<a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
+	</h2>
+	<?php if ( get_the_excerpt() ) : ?>
+		<div class="search-result__excerpt">
+			<?php echo wp_kses_post( get_the_excerpt() ); ?>
+		</div>
+	<?php endif; ?>
+</article>

@@ -34,9 +34,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "page_slug",
                 "operator": "==",
-                "value": "19"
+                "value": "calendar"
             }
         ]
     ],

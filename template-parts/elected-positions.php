@@ -10,7 +10,12 @@
 	<div class="elected-position__left">
 		<h2 class="elected-position__title"><?php echo esc_html(get_the_title($args)); ?></h2>
 		<div class="elected-position__description">
-			<p><?php echo get_field('description', $args); ?></p>
+			<?php
+			$description = get_field( 'description', $args );
+			if ( $description ) {
+				echo wp_kses_post( $description );
+			}
+			?>
 		</div>
 		<?php $requirements = get_field('requirements', $args); ?>
 		<?php if (!empty($requirements)) : ?>

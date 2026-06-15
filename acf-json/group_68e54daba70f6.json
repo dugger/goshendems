@@ -53,9 +53,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "page_slug",
                 "operator": "==",
-                "value": "76"
+                "value": "about"
             }
         ]
     ],

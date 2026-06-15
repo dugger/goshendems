@@ -19,15 +19,22 @@ get_header();
   <div class="container">
     <!-- Hero -->
     <section class="hero hero--short" aria-label="Hero banner">
-      <?php 
-        $hero = get_field('hero_image');
-	      echo wp_get_attachment_image($hero, 'full');
+      <?php
+      $hero = get_field( 'hero_image' );
+      if ( $hero ) {
+        echo wp_get_attachment_image( $hero, 'full' );
+      }
       ?>
     </section>
 
 		<div class="story-body">
-    <h1><?php echo the_title(); ?></h1>
-    <?php echo get_field('body'); ?>  
+    <h1><?php the_title(); ?></h1>
+    <?php
+    $body = get_field( 'body' );
+    if ( $body ) {
+      echo wp_kses_post( $body );
+    }
+    ?>
     </div>  
   </div>
 </main>
