@@ -43,7 +43,7 @@ get_header();
     <!-- About -->
     <section class="about" aria-labelledby="about-heading">
       <?php if ( ! empty( $about['image'] ) ) : ?>
-        <div class="thumb" aria-hidden="true"><?php echo wp_get_attachment_image( $about['image'], 'full' ); ?></div>
+        <div class="thumb" aria-hidden="true"><?php echo wp_get_attachment_image( $about['image'], 'medium' ); ?></div>
       <?php endif; ?>
       <div>
         <?php if ( ! empty( $about['title'] ) ) : ?>

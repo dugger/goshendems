@@ -43,6 +43,16 @@ function goshendems_get_default_primary_menu_items() {
 			'type'  => 'custom',
 		),
 		array(
+			'title' => __( 'Resources', 'goshendems' ),
+			'url'   => home_url( '/' ),
+			'type'  => 'custom',
+		),
+		array(
+			'title' => __( 'Candidates', 'goshendems' ),
+			'url'   => home_url( '/' ),
+			'type'  => 'custom',
+		),
+		array(
 			'title' => __( 'Contact', 'goshendems' ),
 			'slug'  => 'contact-us',
 			'type'  => 'page',
@@ -105,7 +115,13 @@ function goshendems_primary_menu_is_placeholder() {
 		return true;
 	}
 
-	$titles   = wp_list_pluck( $items, 'title' );
+	$titles = wp_list_pluck( $items, 'title' );
+
+	// Re-seed when placeholder links are missing from the default menu.
+	if ( ! in_array( 'Resources', $titles, true ) || ! in_array( 'Candidates', $titles, true ) ) {
+		return true;
+	}
+
 	$expected = array( 'About', 'Events', 'Stories', 'Contact', 'Donate' );
 	$found    = array_intersect( $expected, $titles );
 

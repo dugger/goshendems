@@ -5,21 +5,24 @@
  * navigation support for dropdown menus.
  */
 ( function() {
-    const siteNavigation = document.getElementById( 'site-navigation' ) || document.querySelector('nav.nav');
+	const siteHeader = document.getElementById( 'masthead' );
+	const siteNavigation = document.getElementById( 'site-navigation' ) || document.querySelector( 'nav.nav' );
 
 	// Return early if the navigation doesn't exist.
 	if ( ! siteNavigation ) {
 		return;
 	}
 
-    const button = siteNavigation.querySelector( '.menu-toggle' ) || siteNavigation.getElementsByTagName( 'button' )[ 0 ];
+	const button = siteHeader
+		? siteHeader.querySelector( '.menu-toggle' )
+		: siteNavigation.querySelector( '.menu-toggle' ) || siteNavigation.getElementsByTagName( 'button' )[ 0 ];
 
 	// Return early if the button doesn't exist.
 	if ( 'undefined' === typeof button ) {
 		return;
 	}
 
-    const menu = siteNavigation.querySelector( 'ul' ) || siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
+	const menu = siteNavigation.querySelector( 'ul' ) || siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
 
 	// Hide menu toggle button if menu is empty and return early.
 	if ( 'undefined' === typeof menu ) {
@@ -48,7 +51,8 @@
 
 	// Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
 	document.addEventListener( 'click', function( event ) {
-		const isClickInside = siteNavigation.contains( event.target );
+		const clickTarget = siteHeader || siteNavigation;
+		const isClickInside = clickTarget.contains( event.target );
 
 		if ( ! isClickInside ) {
 			siteNavigation.classList.remove( 'toggled' );
