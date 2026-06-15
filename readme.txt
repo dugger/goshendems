@@ -5,7 +5,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, translation-
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
@@ -34,6 +34,13 @@ Yes. Page fields, the Story CPT, and flexible content blocks depend on ACF Pro w
 Advanced Custom Fields Pro, Ninja Forms, Yoast SEO, Simple Calendar (Google Calendar Events), and WP Super Cache. See `docs/plugins.md` in the theme repository.
 
 == Changelog ==
+
+= 1.3.0 - June 2026 =
+* Resources CPT with archive, category filtering, and options page ordering
+* Candidates CPT with profile pages, Open Graph link thumbnails, and manual ordering
+* Header redesign: two-row layout, social links, 1140px content width, nav offset
+* Home page: optional second hero button, More Stories link on featured stories
+* WordPress Primary menu integration with default menu seeding
 
 = 1.2.0 - June 2026 =
 * Local site audit fixes: template hygiene, escaping, 404/search, story card a11y, ACF slug location rules
