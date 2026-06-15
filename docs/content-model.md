@@ -257,6 +257,8 @@ acf-json/
 
 Primary nav uses **Appearance → Menus**, location **Primary** (`menu-1`).
 
+Header social icons use **Appearance → Menus**, location **Social** (`menu-2`).
+
 | Label | Target |
 |-------|--------|
 | About | Page: `/about/` |
@@ -274,6 +276,10 @@ Resources (`/resources/`) and Candidates (`/candidates/`) can be added manually 
 - On first admin visit after theme update, a default **Primary** menu is created if none exists
 
 **Edit nav:** WP Admin → Appearance → Menus → assign to **Primary**. Placeholder menus (e.g. "Menu 1") are auto-replaced on first admin visit, or use the theme fallback until then.
+
+**Social menu defaults:** Facebook group + Instagram custom links. Icons are chosen from the URL (or Navigation Label / CSS class). Links open in a new tab. The theme seeds a **Social** menu only when no Social location is assigned — removing links in the menu editor sticks (no auto-restore).
+
+**Edit social links:** Appearance → Menus → **Social** menu → assign to **Social** location.
 
 **WP-CLI (Local Site Shell):**
 

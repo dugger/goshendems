@@ -27,7 +27,7 @@ get_header();
           <h1><?php echo esc_html( $hero['title'] ); ?></h1>
         <?php endif; ?>
         <?php if ( ! empty( $hero['description'] ) ) : ?>
-          <p><?php echo esc_html( $hero['description'] ); ?></p>
+          <p class="hero__description"><?php echo esc_html( $hero['description'] ); ?></p>
         <?php endif; ?>
         <?php
         $has_primary_btn   = ! empty( $hero['button_url'] ) && ! empty( $hero['button_text'] );

@@ -29,8 +29,9 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | File | Purpose |
 |------|---------|
 | `functions.php` | Theme setup, enqueues, story archive query (9/page), ACF WYSIWYG toolbar |
-| `header.php` | `<head>`, Typekit, hardcoded nav, skip link |
+| `header.php` | `<head>`, Typekit, Primary + Social menus, skip link |
 | `footer.php` | Site footer |
+| `inc/nav-menus.php` | Primary + Social WP menus, default menu seeding, social icons |
 | `inc/template-functions.php` | OpenGraph tags, custom image sizes, story description helper |
 | `inc/template-tags.php` | Post meta template tags (_s) |
 | `style.css` | All theme CSS (~1500 lines) |
@@ -60,6 +61,7 @@ From `goshendems_scripts()` in `functions.php`:
 |--------|------|------|
 | `goshendems-style` | `style.css` | Always |
 | `goshendems-navigation` | `js/navigation.js` | Always (mobile menu toggle) |
+| `goshendems-hero-cta-fit` | `js/hero-cta-fit.js` | Front page (hide hero description on overflow) |
 | `comment-reply` | WP core | Singular + comments open |
 
 **Not enqueued:** `js/elected-positions-filter.js` (needed by elected positions archive).

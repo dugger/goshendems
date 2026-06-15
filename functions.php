@@ -9,7 +9,7 @@
 
 if ( ! defined( '_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_VERSION', '1.3.1' );
+	define( '_VERSION', '1.3.2' );
 }
 
 /**
@@ -46,10 +46,11 @@ function goshendems_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
+	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'goshendems' ),
+			'menu-2' => esc_html__( 'Social', 'goshendems' ),
 		)
 	);
 
@@ -142,6 +143,10 @@ function goshendems_scripts() {
 	wp_style_add_data( 'goshendems-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'goshendems-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _VERSION, true );
+
+	if ( is_front_page() ) {
+		wp_enqueue_script( 'goshendems-hero-cta-fit', get_template_directory_uri() . '/js/hero-cta-fit.js', array(), _VERSION, true );
+	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

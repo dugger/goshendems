@@ -5,7 +5,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, translation-
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
@@ -34,6 +34,10 @@ Yes. Page fields, the Story CPT, and flexible content blocks depend on ACF Pro w
 Advanced Custom Fields Pro, Ninja Forms, Yoast SEO, Simple Calendar (Google Calendar Events), and WP Super Cache. See `docs/plugins.md` in the theme repository.
 
 == Changelog ==
+
+= 1.3.2 - June 2026 =
+* Social links editable via Appearance → Menus (Social location)
+* Home hero: capped title/button sizes; description hides when CTA overflows
 
 = 1.3.1 - June 2026 =
 * Stop auto-restoring Resources and Candidates in the Primary menu when removed in WP Admin
