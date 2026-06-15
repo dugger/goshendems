@@ -1,0 +1,80 @@
+{
+    "key": "group_674a1b40resopts",
+    "title": "Resources settings",
+    "fields": [
+        {
+            "key": "field_674a1b40intro",
+            "label": "Archive Intro",
+            "name": "resources_intro",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Introductory copy shown at the top of the Resources archive page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "visual",
+            "toolbar": "very_simple",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_674a1b40order",
+            "label": "Resource Order",
+            "name": "resources_order",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Drag to set display order on the Resources archive. Resources not listed appear after these, sorted by title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "resource"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "resource-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1770086400
+}

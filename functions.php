@@ -175,6 +175,11 @@ require get_template_directory() . '/inc/acf-page-slug-location.php';
 require get_template_directory() . '/inc/nav-menus.php';
 
 /**
+ * Resources CPT helpers and archive behavior.
+ */
+require get_template_directory() . '/inc/resources.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';

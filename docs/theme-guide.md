@@ -14,6 +14,7 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | Page slug `contact-us` | `page-contact-us.php` |
 | Other pages | `page.php` *(minimal/broken — avoid for new pages)* |
 | Story archive | `archive-story.php` |
+| Resource archive | `archive-resource.php` |
 | Single story | `single-story.php` |
 | Elected positions archive | `archive-elected-positions.php` |
 | Search | `search.php` |

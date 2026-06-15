@@ -4,6 +4,19 @@ Track documentation updates tied to audit phases.
 
 ---
 
+## 2026-06-15 — Resources CPT
+
+**Added:**
+
+- `resource` CPT with archive at `/resources/`
+- `resource-category` taxonomy with client-side archive filtering
+- ACF options page for intro copy and manual resource order
+- `archive-resource.php`, `inc/resources.php`, `js/resources-filter.js`
+
+**Updated:** `docs/content-model.md`, Primary nav default Resources URL
+
+---
+
 ## 2026-06-15 — Phase 6: Audit complete
 
 **Audit phase:** Phase 6 complete — **full audit finished**

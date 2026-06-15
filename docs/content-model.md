@@ -82,6 +82,37 @@ foreach ( $body as $row ) {
 
 ---
 
+### Resource (`resource`) — **active**
+
+- **JSON:** `acf-json/post_type_674a1b10resource.json`
+- **Archive slug:** `resources` → `/resources/`
+- **Archive template:** `archive-resource.php` (all posts, no pagination)
+- **Single URLs:** Redirect to `/resources/#resource-{slug}` (no single template)
+- **Field group:** Resource fields (`group_674a1b30resource`)
+- **Settings:** ACF Options sub-page under Resources → Settings (`group_674a1b40resopts`)
+- **Taxonomy:** `resource-category` (`acf-json/taxonomy_674a1b20rescat.json`) — client-side filter on archive
+
+#### Resource fields
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `resource_type` | Button group | `file` or `external_link` |
+| `file` | File | When type is file |
+| `external_url` | URL | When type is external link |
+
+#### Resources settings (options page)
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `resources_intro` | WYSIWYG | Intro copy on archive |
+| `resources_order` | Relationship → `resource` | Manual display order |
+
+Cards link directly to the file or URL (new tab). Category badges shown; empty categories hidden from filter.
+
+**After deploy:** Custom Fields → Sync, then **Settings → Permalinks → Save**.
+
+---
+
 ### Elected Positions (`elected-positions`) — **inactive / dormant**
 
 - **JSON:** `acf-json/post_type_693461d475a9e.json` (`"active": false`)
@@ -164,9 +195,13 @@ acf-json/
 ├── group_68dd3f01ce692.json    # Calendar Page
 ├── group_6904d63ed5bfd.json    # Contact Page
 ├── group_68e4df466f654.json    # Story fields
+├── group_674a1b30resource.json # Resource fields
+├── group_674a1b40resopts.json  # Resources settings (options)
 ├── group_693462ae5e6db.json    # Elected Position Fields (inactive)
 ├── post_type_68e4df30960d2.json
+├── post_type_674a1b10resource.json
 ├── post_type_693461d475a9e.json
+├── taxonomy_674a1b20rescat.json
 └── taxonomy_69347cdeefd62.json
 ```
 
@@ -181,6 +216,7 @@ Primary nav uses **Appearance → Menus**, location **Primary** (`menu-1`).
 | About | Page: `/about/` |
 | Events | Page: `/calendar/` |
 | Stories | Custom link: `/stories/` (story archive) |
+| Resources | Custom link: `/resources/` (resource archive) |
 | Contact | Page: `/contact-us/` |
 | Donate | Custom link: ActBlue (opens in new tab) |
 

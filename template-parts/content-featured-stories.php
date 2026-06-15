@@ -56,10 +56,17 @@ if (!empty($stories)):
 ?>
 
 <!-- Featured Stories -->
-<section class="stories-grid stories-grid--featured" aria-label="Featured Stories">
+<section class="featured-stories stories-grid--featured" aria-label="<?php esc_attr_e( 'Featured Stories', 'goshendems' ); ?>">
+  <div class="stories-grid">
   <?php foreach ($stories as $story): ?>
     <?php get_template_part( 'template-parts/content', 'story-card', array('post_id' => $story) ); ?>
-  <?php endforeach; ?>      
+  <?php endforeach; ?>
+  </div>
+  <p class="featured-stories__more">
+    <a class="featured-stories__link" href="<?php echo esc_url( home_url( '/stories/' ) ); ?>">
+      <?php esc_html_e( 'More Stories', 'goshendems' ); ?>
+    </a>
+  </p>
 </section>
 <?php endif; ?>
 
