@@ -979,7 +979,7 @@ textarea {
 	--cream:#f6f3ea;
 	--green:#6ec06e;
 	--green-dark:#2f8a3a;
-	--muted:#667085;
+	--muted:#5f6b7d;
 	--card-shadow: 0 6px 18px rgba(18, 38, 63, 0.08);
 	--max-width:1140px;
 	--page-padding:32px;
@@ -1007,13 +1007,14 @@ textarea {
     text-align: right;
   }
   .featured-stories__link{
-    color: var(--dark-blue);
+    color: #122819;
     font-weight: 700;
     font-size: 16px;
     text-decoration: none;
   }
   .featured-stories__link:hover,
   .featured-stories__link:focus-visible{
+    color: #0a1f10;
     text-decoration: underline;
   }
   .story-card{
@@ -1953,15 +1954,18 @@ textarea {
     margin:0;
   }
 
+  .header-social-nav{
+	margin: 0 0 0 auto;
+	flex: 0 0 auto;
+	z-index: 2;
+  }
   .header-social-links{
 	display:flex;
 	align-items:center;
 	gap:8px;
-	flex:0 0 auto;
-	z-index:2;
 	list-style:none;
 	padding:0;
-	margin:0 0 0 auto;
+	margin:0;
   }
   .header-social-links .menu-item{
 	margin:0;
