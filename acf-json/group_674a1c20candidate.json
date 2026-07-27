@@ -50,6 +50,27 @@
             "append": ""
         },
         {
+            "key": "field_6a57a40a2edf3",
+            "label": "District",
+            "name": "district",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_674a1c20bio",
             "label": "Bio",
             "name": "bio",
@@ -86,6 +107,26 @@
             },
             "default_value": "",
             "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a57a369c2972",
+            "label": "Email Address",
+            "name": "email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
             "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
@@ -151,7 +192,7 @@
                     },
                     "default_value": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "https://",
+                    "placeholder": "https:\/\/",
                     "parent_repeater": "field_674a1c20links"
                 },
                 {
@@ -239,5 +280,7 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1781472200
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1784128548
 }
