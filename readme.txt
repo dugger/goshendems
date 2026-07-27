@@ -5,7 +5,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, translation-
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
@@ -34,6 +34,10 @@ Yes. Page fields, the Story CPT, and flexible content blocks depend on ACF Pro w
 Advanced Custom Fields Pro, Ninja Forms, Yoast SEO, Simple Calendar (Google Calendar Events), and WP Super Cache. See `docs/plugins.md` in the theme repository.
 
 == Changelog ==
+
+= 1.3.3 - July 2026 =
+* Candidates: show phone, email, and district on profiles and archive cards
+* Candidates archive: 12 per page and restyled pagination
 
 = 1.3.2 - June 2026 =
 * Social links editable via Appearance → Menus (Social location)

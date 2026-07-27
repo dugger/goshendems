@@ -14,7 +14,7 @@ This repository is the **goshendems** custom WordPress theme for the Goshen City
 | Local URL | http://goshen-democrats.local |
 | WordPress | 7.0 |
 | PHP | 8.4.10 |
-| Theme | `goshendems` v1.3.2 |
+| Theme | `goshendems` v1.3.3 |
 | Theme repo | This directory |
 | GitHub | https://github.com/dugger/goshendems |
 | Local WP root | `/Users/alexdugger/Local Sites/goshen-democrats/app/public` |
