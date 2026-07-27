@@ -15,7 +15,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return int
  */
 function goshendems_get_candidates_per_page() {
-	return 9;
+	return 12;
+}
+
+/**
+ * Format a candidate district label for consistent title-case display.
+ *
+ * @param string $district Raw district value from ACF.
+ * @return string
+ */
+function goshendems_format_candidate_district( $district ) {
+	$district = trim( (string) $district );
+	if ( '' === $district ) {
+		return '';
+	}
+
+	return implode(
+		'-',
+		array_map( 'ucwords', explode( '-', strtolower( $district ) ) )
+	);
 }
 
 /**

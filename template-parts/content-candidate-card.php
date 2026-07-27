@@ -18,6 +18,7 @@ $permalink = get_permalink( $post_id );
 $title_id  = 'candidate-title-' . $post_id;
 $picture   = get_field( 'picture', $post_id );
 $race      = get_field( 'race', $post_id );
+$district  = get_field( 'district', $post_id );
 $bio       = get_field( 'bio', $post_id );
 ?>
 
@@ -37,8 +38,15 @@ $bio       = get_field( 'bio', $post_id );
 		<h2 id="<?php echo esc_attr( $title_id ); ?>" class="candidate-card__title">
 			<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( get_the_title( $post_id ) ); ?></a>
 		</h2>
-		<?php if ( ! empty( $race ) ) : ?>
-			<p class="candidate-card__race"><?php echo esc_html( $race ); ?></p>
+		<?php if ( ! empty( $race ) || ! empty( $district ) ) : ?>
+			<div class="candidate-card__meta">
+				<?php if ( ! empty( $race ) ) : ?>
+					<p class="candidate-card__race"><?php echo esc_html( $race ); ?></p>
+				<?php endif; ?>
+				<?php if ( ! empty( $district ) ) : ?>
+					<p class="candidate-card__district"><?php echo esc_html( goshendems_format_candidate_district( $district ) ); ?></p>
+				<?php endif; ?>
+			</div>
 		<?php endif; ?>
 		<?php if ( ! empty( $bio ) ) : ?>
 			<div class="candidate-card__bio">

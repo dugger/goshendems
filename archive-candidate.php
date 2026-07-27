@@ -39,8 +39,9 @@ get_header();
 		the_posts_pagination(
 			array(
 				'mid_size'  => 2,
-				'prev_text' => __( 'Previous', 'goshendems' ),
-				'next_text' => __( 'Next', 'goshendems' ),
+				'prev_text' => __( '&larr; Previous', 'goshendems' ),
+				'next_text' => __( 'Next &rarr;', 'goshendems' ),
+				'class'     => 'candidates-pagination',
 			)
 		);
 

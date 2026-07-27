@@ -117,7 +117,7 @@ Cards link directly to the file or URL (new tab). Category badges shown; empty c
 
 - **JSON:** `acf-json/post_type_674a1c10candidate.json`
 - **Archive slug:** `candidates` → `/candidates/`
-- **Archive template:** `archive-candidate.php` (9 per page, paginated)
+- **Archive template:** `archive-candidate.php` (12 per page, paginated)
 - **Single template:** `single-candidate.php`
 - **Single URLs:** `/candidate/{slug}/`
 - **Field group:** Candidate fields (`group_674a1c20candidate`)
@@ -130,8 +130,10 @@ Cards link directly to the file or URL (new tab). Category badges shown; empty c
 |-------|------|-------|
 | `picture` | Image (returns ID) | Headshot or portrait |
 | `race` | Text | Office or race name |
+| `district` | Text | District or district number |
 | `bio` | Textarea | Candidate biography |
 | `phone` | Text | Contact phone number |
+| `email` | Email | Contact email address |
 | `links` | Repeater | External links (see below); drag rows to reorder |
 
 #### Link repeater (`links`)

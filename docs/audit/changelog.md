@@ -4,6 +4,19 @@ Track documentation updates tied to audit phases.
 
 ---
 
+## 2026-07-27 — Candidate contact fields on single
+
+**Added:**
+
+- Email and district display on `single-candidate.php` and archive cards
+- Contact styles for phone/email on the single profile
+
+**Documented:** ACF `district` and `email` fields already in Candidate fields (`group_674a1c20candidate`)
+
+**Updated:** `docs/content-model.md`
+
+---
+
 ## 2026-06-15 — Resources CPT
 
 **Added:**

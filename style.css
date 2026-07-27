@@ -1162,12 +1162,22 @@ textarea {
   .candidate-card__title a:hover{
     text-decoration:underline;
   }
-  .candidate-card__race{
+  .candidate-card__meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 10px;
+  }
+  .candidate-card__race,
+  .candidate-card__district{
     margin:0;
     color:var(--dark-blue);
     font-size:15px;
     font-weight:600;
     line-height:1.3;
+  }
+  .candidate-card__district{
+    color:var(--muted);
+    font-weight:500;
   }
   .candidate-card__bio{
     margin:0;
@@ -1183,6 +1193,62 @@ textarea {
   }
   @media (max-width: 600px){
     .candidates-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* Candidates archive pagination */
+  .navigation.candidates-pagination{
+    margin: 36px 0 12px;
+  }
+  .navigation.candidates-pagination .nav-links{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .navigation.candidates-pagination .page-numbers{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 10px 18px;
+    border: 1px solid #dbe5ff;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--dark-blue);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    box-shadow: var(--card-shadow);
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .navigation.candidates-pagination a.page-numbers:hover,
+  .navigation.candidates-pagination a.page-numbers:focus-visible{
+    background: #eef3ff;
+    border-color: var(--blue);
+    color: var(--dark-blue);
+    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.1);
+  }
+  .navigation.candidates-pagination .page-numbers.current{
+    background: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: #fff;
+    box-shadow: none;
+  }
+  .navigation.candidates-pagination .page-numbers.dots{
+    min-width: auto;
+    padding: 10px 6px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .navigation.candidates-pagination .prev,
+  .navigation.candidates-pagination .next{
+    padding-inline: 22px;
   }
 
   /* Single candidate profile */
@@ -1246,7 +1312,13 @@ textarea {
     line-height: 1.15;
     color: var(--dark-blue);
   }
-  .candidate-profile__race{
+  .candidate-profile__meta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .candidate-profile__race,
+  .candidate-profile__district{
     margin: 0;
     display: inline-block;
     align-self: flex-start;
@@ -1258,17 +1330,30 @@ textarea {
     font-weight: 700;
     line-height: 1.2;
   }
-  .candidate-profile__phone{
+  .candidate-profile__district{
+    background: #f0f2f5;
+    font-weight: 600;
+  }
+  .candidate-profile__contact{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .candidate-profile__phone,
+  .candidate-profile__email{
     margin: 0;
     font-size: 16px;
   }
-  .candidate-profile__phone a{
+  .candidate-profile__phone a,
+  .candidate-profile__email a{
     color: inherit;
     text-decoration: none;
     font-weight: 600;
   }
   .candidate-profile__phone a:hover,
-  .candidate-profile__phone a:focus-visible{
+  .candidate-profile__phone a:focus-visible,
+  .candidate-profile__email a:hover,
+  .candidate-profile__email a:focus-visible{
     color: var(--blue);
     text-decoration: underline;
   }

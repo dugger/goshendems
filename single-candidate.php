@@ -16,12 +16,14 @@ get_header();
 		the_post();
 
 		$post_id = get_the_ID();
-		$picture = get_field( 'picture', $post_id );
-		$race    = get_field( 'race', $post_id );
-		$bio     = get_field( 'bio', $post_id );
-		$phone   = get_field( 'phone', $post_id );
-		$links   = get_field( 'links', $post_id );
-		$archive = get_post_type_archive_link( 'candidate' );
+		$picture  = get_field( 'picture', $post_id );
+		$race     = get_field( 'race', $post_id );
+		$district = get_field( 'district', $post_id );
+		$bio      = get_field( 'bio', $post_id );
+		$phone    = get_field( 'phone', $post_id );
+		$email    = get_field( 'email', $post_id );
+		$links    = get_field( 'links', $post_id );
+		$archive  = get_post_type_archive_link( 'candidate' );
 		?>
 
 		<p class="candidate-back-link">
@@ -44,15 +46,33 @@ get_header();
 			<div class="candidate-profile__body">
 				<header class="candidate-profile__header">
 					<h1 class="candidate-profile__name"><?php the_title(); ?></h1>
-					<?php if ( ! empty( $race ) ) : ?>
-						<p class="candidate-profile__race"><?php echo esc_html( $race ); ?></p>
+					<?php if ( ! empty( $race ) || ! empty( $district ) ) : ?>
+						<div class="candidate-profile__meta">
+							<?php if ( ! empty( $race ) ) : ?>
+								<p class="candidate-profile__race"><?php echo esc_html( $race ); ?></p>
+							<?php endif; ?>
+							<?php if ( ! empty( $district ) ) : ?>
+								<p class="candidate-profile__district"><?php echo esc_html( goshendems_format_candidate_district( $district ) ); ?></p>
+							<?php endif; ?>
+						</div>
 					<?php endif; ?>
-					<?php if ( ! empty( $phone ) ) : ?>
-						<p class="candidate-profile__phone">
-							<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $phone ) ); ?>">
-								<?php echo esc_html( $phone ); ?>
-							</a>
-						</p>
+					<?php if ( ! empty( $phone ) || ! empty( $email ) ) : ?>
+						<div class="candidate-profile__contact">
+							<?php if ( ! empty( $phone ) ) : ?>
+								<p class="candidate-profile__phone">
+									<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $phone ) ); ?>">
+										<?php echo esc_html( $phone ); ?>
+									</a>
+								</p>
+							<?php endif; ?>
+							<?php if ( ! empty( $email ) && is_email( $email ) ) : ?>
+								<p class="candidate-profile__email">
+									<a href="<?php echo esc_url( 'mailto:' . sanitize_email( $email ) ); ?>">
+										<?php echo esc_html( $email ); ?>
+									</a>
+								</p>
+							<?php endif; ?>
+						</div>
 					<?php endif; ?>
 				</header>
 
