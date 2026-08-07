@@ -190,6 +190,11 @@ require get_template_directory() . '/inc/resources.php';
 require get_template_directory() . '/inc/candidates.php';
 
 /**
+ * Stories CPT — sync hero image to featured image for Open Graph.
+ */
+require get_template_directory() . '/inc/stories.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
