@@ -16,9 +16,9 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-  <div class="container light-blue">
-    <section class="form">
-      <h2><?php the_title(); ?></h2>
+  <div class="container">
+    <section class="form" aria-labelledby="contact-heading">
+      <h1 id="contact-heading"><?php the_title(); ?></h1>
       <?php
       $form_intro = get_field( 'form_intro' );
       if ( $form_intro ) {

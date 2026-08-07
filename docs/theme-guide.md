@@ -12,7 +12,7 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | Page slug `about` | `page-about.php` |
 | Page slug `calendar` | `page-calendar.php` |
 | Page slug `contact-us` | `page-contact-us.php` |
-| Other pages | `page.php` *(minimal/broken — avoid for new pages)* |
+| Other pages | `page.php` |
 | Story archive | `archive-story.php` |
 | Resource archive | `archive-resource.php` |
 | Candidate archive | `archive-candidate.php` |
@@ -28,13 +28,14 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 
 | File | Purpose |
 |------|---------|
-| `functions.php` | Theme setup, enqueues, story archive query (9/page), ACF WYSIWYG toolbar |
+| `functions.php` | Theme setup, enqueues, story archive query (9/page), ACF WYSIWYG toolbar, REST user lockdown |
 | `header.php` | `<head>`, Typekit, Primary + Social menus, skip link |
 | `footer.php` | Site footer |
 | `inc/nav-menus.php` | Primary + Social WP menus, default menu seeding, social icons |
-| `inc/template-functions.php` | OpenGraph tags, custom image sizes, story description helper |
+| `inc/template-functions.php` | Custom image sizes |
+| `inc/schema.php` | Person / Article JSON-LD for candidates and stories |
 | `inc/template-tags.php` | Post meta template tags (_s) |
-| `style.css` | All theme CSS (~1500 lines) |
+| `style.css` | All theme CSS |
 
 ---
 
@@ -85,14 +86,13 @@ Registered in `inc/template-functions.php`:
 
 ## OpenGraph (theme-level SEO)
 
-`inc/template-functions.php` outputs custom `<meta property="og:*">` tags:
+## Social meta & structured data
 
-- Home: hero image from ACF
-- Stories: hero or first paragraph excerpt via `goshendems_get_story_description()`
-- Uses `esc_attr()` / `esc_url()` on output
-- OG URL built from `$_SERVER` — prefer `get_permalink()` for new code
+**Social / Open Graph:** Owned by the active SEO plugin (SEOPress during the local trial). Do not add theme `og:*` tags.
 
-Yoast SEO also active — coordinate to avoid duplicate/conflicting meta (audit pending).
+**Theme social image size filters** (`inc/stories.php`): `wpseo_opengraph_image_size` and `seopress_social_image_size` prefer the theme `opengraph` (1200×630) size on singular stories.
+
+**CPT JSON-LD** (`inc/schema.php`): emits `Person` on singular candidates and `Article` on singular stories. Complements SEOPress site-level Organization/WebSite schema. Free SEOPress does not replace this; SEOPress PRO schema editor could later, if you remove the theme file to avoid duplicates.
 
 ---
 

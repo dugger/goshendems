@@ -14,7 +14,7 @@ This repository is the **goshendems** custom WordPress theme for the Goshen City
 | Local URL | http://goshen-democrats.local |
 | WordPress | 7.0 |
 | PHP | 8.4.10 |
-| Theme | `goshendems` v1.3.3 |
+| Theme | `goshendems` v1.3.4 |
 | Theme repo | This directory |
 | GitHub | https://github.com/dugger/goshendems |
 | Local WP root | `/Users/alexdugger/Local Sites/goshen-democrats/app/public` |
@@ -32,7 +32,7 @@ Read the relevant doc **before** making changes:
 | Local setup, MCP, WP-CLI | [docs/local-environment.md](docs/local-environment.md) |
 | Pages, CPTs, ACF fields | [docs/content-model.md](docs/content-model.md) |
 | Templates, partials, PHP conventions | [docs/theme-guide.md](docs/theme-guide.md) |
-| Ninja Forms, Yoast, calendar, etc. | [docs/plugins.md](docs/plugins.md) |
+| Ninja Forms, SEOPress/Yoast, calendar, etc. | [docs/plugins.md](docs/plugins.md) |
 | User flows and UX behavior | [docs/user-journeys.md](docs/user-journeys.md) |
 | Add a story content block | [docs/how-to/add-story-block.md](docs/how-to/add-story-block.md) |
 | Add a page template | [docs/how-to/add-page-template.md](docs/how-to/add-page-template.md) |
@@ -49,11 +49,12 @@ Read the relevant doc **before** making changes:
 - **ACF Pro** — field groups, CPTs, and taxonomies synced via `acf-json/`
 - **Custom theme** — Underscores-based; ACF-driven page templates and story flexible content
 - **Ninja Forms** — Contact Us form (ID 1), Cloudflare Turnstile spam protection
-- **Yoast SEO** — SEO and readability scoring
+- **Yoast SEO / SEOPress** — local is testing **SEOPress** (active); Yoast is installed but inactive
 - **Simple Calendar** — Google Calendar Events plugin; calendar page
-- **WP Super Cache**, **Cloudflare**, **EWWW Image Optimizer**, **WP Mail SMTP**
+- **WP Super Cache**, **Cloudflare**, **WP Mail SMTP** — caching/CDN/email
+- **EWWW Image Optimizer** — installed locally but currently inactive
 - **Git Updater** — theme updates from GitHub
-- **MCP Adapter** — local dev only; connects Cursor to WordPress via `.cursor/mcp.json`
+- **MCP Adapter** — local dev only; must be **active** for Cursor MCP tools (currently often inactive → connection failed)
 
 ---
 
@@ -77,7 +78,7 @@ Read the relevant doc **before** making changes:
 
 - Edit theme files **in this repo** — Local uses a symlink; changes appear immediately.
 - Use **Local Site Shell** for WP-CLI, not Homebrew `wp` (database socket mismatch).
-- Use **MCP tools** (`wordpress-goshen-local` in Cursor) for site info, forms, and Yoast data.
+- Use **MCP tools** (`wordpress-goshen-local` in Cursor) for site info and forms when the MCP Adapter plugin is active.
 - Never commit `.cursor/mcp.json` (contains Application Password).
 
 ### Out of scope (for now)
@@ -97,11 +98,11 @@ Meta tools (always available):
 - `mcp-adapter-get-ability-info`
 - `mcp-adapter-execute-ability`
 
-Notable abilities:
+Notable abilities (when MCP Adapter is active):
 
 - `core/get-site-info`, `core/get-user-info`, `core/get-environment-info`
 - `ninjaforms/*` — forms, fields, submissions, settings
-- `yoast-seo/get-seo-scores`, `yoast-seo/get-readability-scores`
+- SEO plugin abilities depend on which SEO plugin is active (Yoast vs SEOPress)
 
 ---
 
@@ -111,14 +112,16 @@ Notable abilities:
 
 **Prioritized todo list** — [docs/audit/summary.md](docs/audit/summary.md) (Tier 1 quick wins → Tier 5 deferred).
 
-Top items to address first:
+Top items from the June 2026 audit (some may already be fixed — re-verify before working):
 
-1. Remove home page JS error + fix unclosed `<main>`
-2. Remove duplicate OG tags (Yoast owns social meta)
-3. Fix broken `page.php`
-4. Update stale "building this site" copy
+1. Home page JS / unclosed `<main>` (re-verify — may be resolved)
+2. Social meta ownership — active SEO plugin owns OG; theme must not duplicate
+3. Default `page.php` / orphan pages (re-verify)
+4. Stale "building this site" copy (content)
 5. Escaping pass on templates
 6. Elected Positions deferred to separate project (not audit scope)
+
+During the SEOPress trial, prefer SEOPress Titles/Social/Sitemaps for SEO data fixes. Theme CPT JSON-LD lives in `inc/schema.php` (Person/Article).
 
 ---
 

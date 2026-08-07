@@ -29,7 +29,7 @@
 	<div class="container">
 		<header id="masthead" class="site-header">
 			<div class="site-header__top">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'goshendems' ); ?>"><img class="hamburger-icon" src="<?php echo esc_url( get_template_directory_uri() . '/assets/hamburger.png' ); ?>" alt="" aria-hidden="true" /><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'goshendems' ); ?></span></button>
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'goshendems' ); ?>"><img class="hamburger-icon" src="<?php echo esc_url( get_template_directory_uri() . '/assets/hamburger.png' ); ?>" width="24" height="24" alt="" aria-hidden="true" /><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'goshendems' ); ?></span></button>
 				<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/logo_wide.png' ); ?>" alt="Goshen Dems Logo"></a>
 				<?php goshendems_social_links(); ?>
 			</div>

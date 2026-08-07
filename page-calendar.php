@@ -16,8 +16,9 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-  <div class="container light-blue">
-    <section class="calendar" aria-label="Calendar">
+  <div class="container">
+    <section class="calendar" aria-labelledby="calendar-heading">
+      <h1 id="calendar-heading"><?php the_title(); ?></h1>
       <?php
       $calendar_field = get_field( 'calendar' );
       if ( is_array( $calendar_field ) && ! empty( $calendar_field[0] ) ) {

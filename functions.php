@@ -9,7 +9,7 @@
 
 if ( ! defined( '_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_VERSION', '1.3.3' );
+	define( '_VERSION', '1.3.4' );
 }
 
 /**
@@ -195,6 +195,11 @@ require get_template_directory() . '/inc/candidates.php';
 require get_template_directory() . '/inc/stories.php';
 
 /**
+ * CPT JSON-LD schema (Person / Article).
+ */
+require get_template_directory() . '/inc/schema.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
@@ -238,3 +243,29 @@ function goshendems_disable_author_archives() {
 	}
 }
 add_action( 'template_redirect', 'goshendems_disable_author_archives' );
+
+/**
+ * Block anonymous access to the users REST endpoint (username enumeration).
+ *
+ * @param mixed            $result  Response to replace the request result.
+ * @param WP_REST_Server   $server  Server instance.
+ * @param WP_REST_Request  $request Request used to generate the response.
+ * @return mixed
+ */
+function goshendems_restrict_users_rest_endpoint( $result, $server, $request ) {
+	if ( is_user_logged_in() ) {
+		return $result;
+	}
+
+	$route = $request->get_route();
+	if ( preg_match( '#^/wp/v2/users(?:/|$)#', $route ) ) {
+		return new WP_Error(
+			'rest_user_cannot_view',
+			__( 'Sorry, you are not allowed to list users.', 'goshendems' ),
+			array( 'status' => rest_authorization_required_code() )
+		);
+	}
+
+	return $result;
+}
+add_filter( 'rest_pre_dispatch', 'goshendems_restrict_users_rest_endpoint', 10, 3 );

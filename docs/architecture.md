@@ -18,7 +18,7 @@ Local-only reference. Based on inventory of `http://goshen-democrats.local` (rec
 │  Theme: goshendems (symlinked from this git repo)             │
 │  Content: ACF Pro field groups + JSON sync                  │
 │  Forms: Ninja Forms                                         │
-│  SEO: Yoast SEO                                             │
+│  SEO: SEOPress (local trial; Yoast installed inactive)      │
 │  Calendar: Simple Calendar (google-calendar-events)         │
 └───────────────────────────┬─────────────────────────────────┘
                             │
@@ -33,8 +33,8 @@ Local-only reference. Based on inventory of `http://goshen-democrats.local` (rec
 ## Request flow (typical page)
 
 1. WordPress resolves URL via rewrite rules / template hierarchy.
-2. Theme `header.php` outputs `<head>`, hardcoded primary nav, Typekit CSS.
-3. `wp_head()` runs — Yoast meta, OpenGraph from `inc/template-functions.php`, enqueued assets.
+2. Theme `header.php` outputs `<head>`, primary/social nav, Typekit CSS.
+3. `wp_head()` runs — SEOPress meta/social/schema, theme CPT JSON-LD (`inc/schema.php`), enqueued assets.
 4. Page template (e.g. `page-home.php`) or archive (`archive-story.php`) loads ACF fields.
 5. Template parts render sections (`template-parts/content-block-*.php` for stories).
 6. `footer.php` closes layout.
@@ -52,9 +52,11 @@ Local-only reference. Based on inventory of `http://goshen-democrats.local` (rec
 | `/stories/` | `archive-story.php` | Story CPT archive |
 | `/story/{slug}/` | `single-story.php` | **Canonical** single story URL |
 | `/stories/{slug}/` | 301 → `/story/{slug}/` | Non-canonical; redirects |
-
-**Note:** Archive slug is `stories` but single permalinks use `/story/…`. Nav links to `/stories/` for the archive — correct. Yoast canonical uses `/story/{slug}/`.
+| `/candidates/` | `archive-candidate.php` | Candidate CPT archive |
+| `/candidate/{slug}/` | `single-candidate.php` | Single candidate profile |
 | `/elected-positions/` | `archive-elected-positions.php` | CPT currently **inactive** in ACF |
+
+**Note:** Archive slug is `stories` but single permalinks use `/story/…`. Nav links to `/stories/` for the archive — correct. Canonical URLs come from the active SEO plugin (SEOPress during the local trial).
 
 **Note:** Page ID 54 (`stories`) exists and is set as `Posts page` in WP settings, but `/stories/` renders the **story CPT archive** (`archive-story.php`). The native Posts page setting is misleading — site content uses the `story` CPT, not `post`. Consider clearing the Posts page setting in admin.
 
@@ -62,24 +64,25 @@ Local-only reference. Based on inventory of `http://goshen-democrats.local` (rec
 
 ## Active plugins (local)
 
-| Plugin | Slug | Role |
-|--------|------|------|
-| Advanced Custom Fields PRO | `advanced-custom-fields-pro` | Content model, JSON sync |
-| Ninja Forms | `ninja-forms` | Contact form |
-| Yoast SEO | `wordpress-seo` | SEO metadata, sitemaps |
-| ACF Content Analysis for Yoast SEO | `acf-content-analysis-for-yoast-seo` | ACF + Yoast integration |
-| Auto Focus Keyword for SEO | `auto-focus-keyword-for-seo` | Yoast helper |
-| Simple Calendar | `google-calendar-events` | Events on calendar page |
-| Classic Editor | `classic-editor` | Disables block editor |
-| Cloudflare | `cloudflare` | CDN/cache integration |
-| WP Super Cache | `wp-super-cache` | Page caching |
-| EWWW Image Optimizer | `ewww-image-optimizer` | Image compression |
-| WP Mail SMTP | `wp-mail-smtp` | Outbound email |
-| Git Updater | `git-updater` | Theme updates from GitHub |
-| All-in-One WP Migration | `all-in-one-wp-migration` | Backups/migration |
-| Crop Thumbnails | `crop-thumbnails` | Custom crop sizes |
-| DreamHost Panel Login | `dreamhost-panel-login` | Host panel SSO |
-| MCP Adapter | `mcp-adapter` | Cursor MCP (local dev) |
+| Plugin | Slug | Role / local status |
+|--------|------|---------------------|
+| Advanced Custom Fields PRO | `advanced-custom-fields-pro` | Content model, JSON sync — **active** |
+| Ninja Forms | `ninja-forms` | Contact form — **active** |
+| SEOPress | `wp-seopress` | Titles, social, sitemaps — **active (local SEO trial)** |
+| Yoast SEO | `wordpress-seo` | Installed; **inactive** during SEOPress trial |
+| Auto Focus Keyword for SEO | `auto-focus-keyword-for-seo` | Yoast helper — **active but useless without Yoast** |
+| ACF Content Analysis for Yoast SEO | `acf-content-analysis-for-yoast-seo` | Installed; only useful if Yoast active |
+| Simple Calendar | `google-calendar-events` | Events on calendar page — **active** |
+| Classic Editor | `classic-editor` | Disables block editor — **active** |
+| Cloudflare | `cloudflare` | CDN/cache integration — **active** |
+| WP Super Cache | `wp-super-cache` | Page caching — **active** |
+| EWWW Image Optimizer | `ewww-image-optimizer` | Image compression — **inactive** |
+| WP Mail SMTP | `wp-mail-smtp` | Outbound email — **active** |
+| Git Updater | `git-updater` | Theme updates from GitHub — **active** |
+| All-in-One WP Migration | `all-in-one-wp-migration` | Backups/migration — **active** |
+| Crop Thumbnails | `crop-thumbnails` | Custom crop sizes — **active** |
+| DreamHost Panel Login | `dreamhost-panel-login` | Host panel SSO — **active** |
+| MCP Adapter | `mcp-adapter` | Cursor MCP — installed; **often inactive** (activate for MCP tools) |
 
 Inactive bundled themes: Twenty Twenty-Three through Twenty Twenty-Five.
 
@@ -91,15 +94,16 @@ Inactive bundled themes: Twenty Twenty-Three through Twenty Twenty-Five.
 goshendems/
 ├── acf-json/              # ACF sync: field groups, CPTs, taxonomy
 ├── assets/                # Logos, hamburger icon
-├── inc/                   # template-functions.php (OG tags), customizer, jetpack
+├── inc/                   # template-functions, schema.php, candidates, stories, nav-menus, …
 ├── js/                    # navigation.js (enqueued), elected-positions-filter.js (orphan)
 ├── template-parts/        # Reusable partials, content-block-* for stories
 ├── page-*.php             # Page templates (matched by slug)
 ├── archive-*.php          # CPT archives
 ├── single-story.php       # Story single
+├── single-candidate.php   # Candidate single
 ├── functions.php          # Setup, enqueues, story archive query, ACF toolbar
 ├── header.php / footer.php
-└── style.css              # Main stylesheet (~1500 lines)
+└── style.css              # Main stylesheet
 ```
 
 ---
@@ -109,9 +113,11 @@ goshendems/
 | Type | Slug | Count (local) | Defined in |
 |------|------|---------------|------------|
 | Page | `page` | 5 published | WordPress |
-| Story | `story` | 22+ | `acf-json/post_type_68e4df30960d2.json` |
-| Elected Position | `elected-positions` | TBD | `acf-json/post_type_693461d475a9e.json` (**inactive**) |
-| Taxonomy `level` | on `elected-positions` | TBD | `acf-json/taxonomy_69347cdeefd62.json` |
+| Story | `story` | ~31 | `acf-json/post_type_*.json` |
+| Candidate | `candidate` | ~10 | ACF JSON CPT |
+| Resource | `resource` | 1 example | ACF JSON CPT |
+| Elected Position | `elected-positions` | 0 | `acf-json/post_type_693461d475a9e.json` (**inactive**) |
+| Taxonomy `level` | on `elected-positions` | — | `acf-json/taxonomy_69347cdeefd62.json` |
 
 See [content-model.md](content-model.md) for field-level detail.
 

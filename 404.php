@@ -22,6 +22,8 @@ get_header();
 
 				<nav class="error-404__links" aria-label="<?php esc_attr_e( 'Helpful links', 'goshendems' ); ?>">
 					<a class="error-404__link" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'goshendems' ); ?></a>
+					<a class="error-404__link" href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About', 'goshendems' ); ?></a>
+					<a class="error-404__link" href="<?php echo esc_url( home_url( '/candidates/' ) ); ?>"><?php esc_html_e( 'Candidates', 'goshendems' ); ?></a>
 					<a class="error-404__link" href="<?php echo esc_url( home_url( '/stories/' ) ); ?>"><?php esc_html_e( 'Stories', 'goshendems' ); ?></a>
 					<a class="error-404__link" href="<?php echo esc_url( home_url( '/calendar/' ) ); ?>"><?php esc_html_e( 'Events', 'goshendems' ); ?></a>
 					<a class="error-404__link" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact', 'goshendems' ); ?></a>

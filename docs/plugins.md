@@ -14,7 +14,7 @@ How installed plugins integrate with the theme. Audited on local restore (Phase 
 - Page templates call `get_field()` / `the_field()`
 - Custom WYSIWYG toolbar via `acf/fields/wysiwyg/toolbars` filter in `functions.php`
 - Story flexible content drives `template-parts/content-block-*.php`
-- ACF Content Analysis for Yoast bridges fields into SEO analysis
+- ACF Content Analysis for Yoast only helps when Yoast is active (currently inactive in the SEOPress trial)
 
 **Agent notes:**
 
@@ -72,11 +72,13 @@ How installed plugins integrate with the theme. Audited on local restore (Phase 
 
 ---
 
-## Yoast SEO (`wordpress-seo`) v27.8
+## Yoast SEO (`wordpress-seo`) — may be inactive locally
 
-**Role:** SEO titles, meta descriptions, sitemaps, readability analysis.
+**Role (when active):** SEO titles, meta descriptions, sitemaps, readability analysis.
 
-### Story CPT SEO (local)
+**Local note (Aug 2026):** This environment is testing **SEOPress** (`wp-seopress`) as the SEO owner. Yoast may remain installed but inactive. Prefer SEOPress Titles & metas, Social, and XML sitemaps while that trial is underway. Theme CPT JSON-LD for `candidate` (Person) and `story` (Article) is emitted from `inc/schema.php` and complements SEOPress site-level Organization/WebSite schema.
+
+### Story CPT SEO (historical Yoast local sample)
 
 | Metric | Value |
 |--------|--------|
@@ -91,20 +93,29 @@ How installed plugins integrate with the theme. Audited on local restore (Phase 
 
 ### Social / Open Graph
 
-Yoast outputs OG tags on all pages. **Theme also outputs OG tags** in `inc/template-functions.php` — results in **duplicate `og:title`** (and related tags) on home, stories, and contact pages.
+When Yoast is active it outputs OG tags. Theme social image size filters live in `inc/stories.php` for both Yoast (`wpseo_opengraph_image_size`) and SEOPress (`seopress_social_image_size`).
 
-| Page | Yoast `og:title` | Theme `og:title` |
-|------|------------------|------------------|
-| Home | "Home Page - Goshen Democrats" | "Get Involved!" (from ACF hero) |
-| Story | "{title} - Goshen Democrats" | "{title}" (from ACF/content) |
+## SEOPress (`wp-seopress`) — active during local trial
 
-**Recommendation:** Remove theme OG output OR disable Yoast social tags — pick one owner. See findings.md.
+**Role:** Titles, meta descriptions, social tags, XML sitemaps (`/sitemaps.xml`), Knowledge graph Organization/WebSite schema.
 
-**Agent rule:** Do not add OG tags in theme PHP — Yoast owns social meta. Planned fix: remove `goshendems_opengraph_tags()` hook from `inc/template-functions.php`.
+**Agent notes while testing the switch:**
 
-Yoast social profiles configured: Facebook group URL set; Instagram/LinkedIn empty.
+- Fix title typos and archive/search templates in SEOPress, not the theme
+- Enable the `candidate` CPT (and archive) in SEOPress XML sitemaps
+- Set default social/OG image and per-CPT title/description templates in SEOPress
+- Theme does **not** own home/site title strings — those are SEOPress/options data
+- Deactivate leftover Yoast helper plugins (`auto-focus-keyword-for-seo`, ACF Content Analysis for Yoast) if SEOPress becomes permanent
 
-**MCP tools:** `yoast-seo/get-seo-scores`, `yoast-seo/get-readability-scores` (may not reflect story CPT in dashboard)
+---
+
+## Legacy Yoast social overlap notes
+
+Historical audit found duplicate OG when theme + Yoast both emitted tags. Confirm theme no longer prints its own OG block; SEOPress (or Yoast) should be the single social meta owner.
+
+**Recommendation:** Keep a single social-meta owner (SEOPress during the local trial). Theme should not emit duplicate OG tags.
+
+**Agent rule:** Do not add OG tags in theme PHP — the active SEO plugin owns social meta. Theme may emit CPT JSON-LD (`inc/schema.php`) and social image size filters only.
 
 ---
 
