@@ -33,6 +33,8 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | `footer.php` | Site footer |
 | `inc/nav-menus.php` | Primary + Social WP menus, default menu seeding, social icons |
 | `inc/template-functions.php` | Custom image sizes |
+| `inc/stories.php` | Story hero → featured image for OG |
+| `inc/pages.php` | Page ACF hero → featured image for OG |
 | `inc/schema.php` | Person / Article JSON-LD for candidates and stories |
 | `inc/template-tags.php` | Post meta template tags (_s) |
 | `style.css` | All theme CSS |
@@ -90,7 +92,7 @@ Registered in `inc/template-functions.php`:
 
 **Social / Open Graph:** Owned by the active SEO plugin (SEOPress during the local trial). Do not add theme `og:*` tags.
 
-**Theme social image size filters** (`inc/stories.php`): `wpseo_opengraph_image_size` and `seopress_social_image_size` prefer the theme `opengraph` (1200×630) size on singular stories.
+**Theme social image size filters** (`inc/stories.php`, `inc/pages.php`, `inc/candidates.php`): prefer the theme `opengraph` (1200×630) size for SEOPress/Yoast on stories, pages, and candidates. Featured images are synced from ACF heroes/pictures so SEO plugins can emit `og:image`.
 
 **CPT JSON-LD** (`inc/schema.php`): emits `Person` on singular candidates and `Article` on singular stories. Complements SEOPress site-level Organization/WebSite schema. Free SEOPress does not replace this; SEOPress PRO schema editor could later, if you remove the theme file to avoid duplicates.
 

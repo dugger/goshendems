@@ -9,7 +9,7 @@
 
 if ( ! defined( '_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_VERSION', '1.3.4' );
+	define( '_VERSION', '1.3.6' );
 }
 
 /**
@@ -193,6 +193,11 @@ require get_template_directory() . '/inc/candidates.php';
  * Stories CPT — sync hero image to featured image for Open Graph.
  */
 require get_template_directory() . '/inc/stories.php';
+
+/**
+ * Pages — sync ACF hero images to featured image for Open Graph.
+ */
+require get_template_directory() . '/inc/pages.php';
 
 /**
  * CPT JSON-LD schema (Person / Article).

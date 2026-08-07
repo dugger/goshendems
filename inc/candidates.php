@@ -326,6 +326,163 @@ function goshendems_sync_candidate_link_thumbnails( $post_id ) {
 add_action( 'acf/save_post', 'goshendems_sync_candidate_link_thumbnails', 20 );
 
 /**
+ * Ensure the candidate post type supports featured images (for SEO social meta).
+ *
+ * @param array  $args      Post type args.
+ * @param string $post_type Post type key.
+ * @return array
+ */
+function goshendems_candidate_post_type_supports_thumbnail( $args, $post_type ) {
+	if ( 'candidate' !== $post_type ) {
+		return $args;
+	}
+
+	if ( empty( $args['supports'] ) || ! is_array( $args['supports'] ) ) {
+		$args['supports'] = array( 'title', 'thumbnail', 'custom-fields' );
+		return $args;
+	}
+
+	if ( ! in_array( 'thumbnail', $args['supports'], true ) ) {
+		$args['supports'][] = 'thumbnail';
+	}
+
+	return $args;
+}
+add_filter( 'register_post_type_args', 'goshendems_candidate_post_type_supports_thumbnail', 10, 2 );
+
+/**
+ * Sync a candidate's ACF picture field to the WordPress featured image.
+ *
+ * SEOPress (and other SEO plugins) read the featured image for og:image.
+ *
+ * @param int $post_id Post ID.
+ */
+function goshendems_sync_candidate_picture_to_featured_image( $post_id ) {
+	$post_id = (int) $post_id;
+	if ( $post_id <= 0 ) {
+		return;
+	}
+
+	if ( 'candidate' !== get_post_type( $post_id ) ) {
+		return;
+	}
+
+	if ( ! function_exists( 'get_field' ) ) {
+		return;
+	}
+
+	$picture_id = (int) get_field( 'picture', $post_id );
+	$current    = (int) get_post_thumbnail_id( $post_id );
+
+	if ( $picture_id > 0 ) {
+		if ( $current !== $picture_id ) {
+			set_post_thumbnail( $post_id, $picture_id );
+		}
+		return;
+	}
+
+	if ( $current > 0 ) {
+		delete_post_thumbnail( $post_id );
+	}
+}
+
+/**
+ * Keep featured image in sync when a candidate is saved via ACF.
+ *
+ * @param int|string $post_id Post ID.
+ */
+function goshendems_on_candidate_acf_save_picture( $post_id ) {
+	$post_id = (int) $post_id;
+	if ( $post_id <= 0 ) {
+		return;
+	}
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	goshendems_sync_candidate_picture_to_featured_image( $post_id );
+}
+add_action( 'acf/save_post', 'goshendems_on_candidate_acf_save_picture', 25 );
+
+/**
+ * Hide the Featured Image metabox on candidate edit screens.
+ * Editors manage the image via the ACF Picture field.
+ */
+function goshendems_remove_candidate_featured_image_metabox() {
+	remove_meta_box( 'postimagediv', 'candidate', 'side' );
+}
+add_action( 'do_meta_boxes', 'goshendems_remove_candidate_featured_image_metabox' );
+
+/**
+ * One-time backfill: sync picture → featured image for existing candidates.
+ */
+function goshendems_backfill_candidate_featured_images() {
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
+
+	if ( get_option( 'goshendems_candidate_picture_featured_synced' ) ) {
+		return;
+	}
+
+	if ( ! function_exists( 'get_field' ) ) {
+		return;
+	}
+
+	$candidate_ids = get_posts(
+		array(
+			'post_type'              => 'candidate',
+			'post_status'            => array( 'publish', 'draft', 'pending', 'future', 'private' ),
+			'posts_per_page'         => -1,
+			'fields'                 => 'ids',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		)
+	);
+
+	foreach ( $candidate_ids as $candidate_id ) {
+		goshendems_sync_candidate_picture_to_featured_image( (int) $candidate_id );
+	}
+
+	update_option( 'goshendems_candidate_picture_featured_synced', 1, false );
+}
+add_action( 'admin_init', 'goshendems_backfill_candidate_featured_images' );
+
+/**
+ * Prefer the theme opengraph size for SEO social images on candidates.
+ *
+ * @param string $size Image size.
+ * @return string
+ */
+function goshendems_candidate_seopress_social_image_size( $size ) {
+	if ( is_singular( 'candidate' ) ) {
+		return 'opengraph';
+	}
+	return $size;
+}
+add_filter( 'seopress_social_image_size', 'goshendems_candidate_seopress_social_image_size' );
+
+/**
+ * Prefer the theme opengraph size for Yoast OG images on candidates.
+ *
+ * @param string|null $size Image size.
+ * @return string|null
+ */
+function goshendems_candidate_wpseo_opengraph_image_size( $size ) {
+	if ( is_singular( 'candidate' ) ) {
+		return 'opengraph';
+	}
+	return $size;
+}
+add_filter( 'wpseo_opengraph_image_size', 'goshendems_candidate_wpseo_opengraph_image_size' );
+
+/**
  * Paginate the candidates archive.
  *
  * @param WP_Query $query Main query.
