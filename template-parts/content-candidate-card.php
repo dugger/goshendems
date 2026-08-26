@@ -26,8 +26,11 @@ $bio       = get_field( 'bio', $post_id );
 	<a class="candidate-card__photo-link" href="<?php echo esc_url( $permalink ); ?>" aria-hidden="true" tabindex="-1">
 		<div class="candidate-card__photo">
 			<?php
-			if ( $picture ) {
-				echo wp_get_attachment_image( $picture, 'medium' );
+			// wp_get_attachment_image() returns '' when the ID points at a deleted
+			// attachment, which would otherwise render an empty box.
+			$picture_html = $picture ? wp_get_attachment_image( $picture, 'medium' ) : '';
+			if ( '' !== $picture_html ) {
+				echo $picture_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by wp_get_attachment_image().
 			} else {
 				echo '<div class="candidate-card__placeholder">' . esc_html__( 'No Photo', 'goshendems' ) . '</div>';
 			}

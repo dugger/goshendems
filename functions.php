@@ -9,7 +9,7 @@
 
 if ( ! defined( '_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_VERSION', '1.3.6' );
+	define( '_VERSION', '1.3.7' );
 }
 
 /**
@@ -139,7 +139,19 @@ add_action( 'widgets_init', 'goshendems_widgets_init' );
  * Enqueue scripts and styles.
  */
 function goshendems_scripts() {
-	wp_enqueue_style( 'goshendems-style', get_stylesheet_uri(), array(), _VERSION );
+	/*
+	 * Work Sans used to be pulled in by an @import at the top of style.css, which
+	 * hid it behind a chained request. Enqueue it directly so the browser can find
+	 * it in the initial HTML (see the preconnect hints in header.php).
+	 */
+	wp_enqueue_style(
+		'goshendems-work-sans',
+		'https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;1,500&display=swap',
+		array(),
+		null // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Google Fonts URL is already versioned.
+	);
+
+	wp_enqueue_style( 'goshendems-style', get_stylesheet_uri(), array( 'goshendems-work-sans' ), _VERSION );
 	wp_style_add_data( 'goshendems-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'goshendems-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _VERSION, true );
@@ -153,6 +165,97 @@ function goshendems_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'goshendems_scripts' );
+
+/**
+ * Add `defer` to theme scripts so they never block first render.
+ *
+ * These are already enqueued in the footer, but optimizer plugins sometimes hoist
+ * scripts into <head>; `defer` keeps them non-blocking either way.
+ *
+ * @param string $tag    Script tag HTML.
+ * @param string $handle Registered script handle.
+ * @return string
+ */
+function goshendems_defer_scripts( $tag, $handle ) {
+	$defer_handles = array(
+		'goshendems-navigation',
+		'goshendems-hero-cta-fit',
+		'goshendems-resources-filter',
+		'goshendems-elected-positions-filter',
+	);
+
+	if ( ! in_array( $handle, $defer_handles, true ) ) {
+		return $tag;
+	}
+
+	if ( false !== strpos( $tag, ' defer' ) || false !== strpos( $tag, ' async' ) ) {
+		return $tag;
+	}
+
+	return str_replace( ' src=', ' defer src=', $tag );
+}
+add_filter( 'script_loader_tag', 'goshendems_defer_scripts', 10, 2 );
+
+/**
+ * Fallback meta description text for the current view.
+ *
+ * @return string
+ */
+function goshendems_default_meta_description() {
+	$description = '';
+
+	if ( is_front_page() ) {
+		$description = __( 'Goshen City Democratic Party — connecting, volunteering, and voting for Goshen, Indiana.', 'goshendems' );
+	} elseif ( is_post_type_archive( 'candidate' ) ) {
+		$description = __( 'Meet the Democratic candidates running for office in Goshen, Indiana.', 'goshendems' );
+	} elseif ( is_post_type_archive( 'story' ) ) {
+		$description = __( 'News and stories from the Goshen City Democratic Party.', 'goshendems' );
+	} elseif ( is_singular() ) {
+		$description = get_the_excerpt();
+	}
+
+	if ( '' === $description ) {
+		$description = get_bloginfo( 'description', 'display' );
+	}
+
+	$description = wp_strip_all_tags( (string) $description, true );
+
+	return trim( wp_trim_words( $description, 30, '' ) );
+}
+
+/**
+ * Supply a description to SEOPress when one has not been entered for the view.
+ *
+ * @param string $description SEOPress meta description.
+ * @return string
+ */
+function goshendems_seopress_description_fallback( $description ) {
+	if ( is_string( $description ) && '' !== trim( $description ) ) {
+		return $description;
+	}
+
+	return goshendems_default_meta_description();
+}
+add_filter( 'seopress_titles_desc', 'goshendems_seopress_description_fallback' );
+
+/**
+ * Output a meta description when no SEO plugin is handling it.
+ *
+ * Guarded so the site never ends up with two description tags.
+ */
+function goshendems_meta_description() {
+	if ( defined( 'SEOPRESS_VERSION' ) || defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) ) {
+		return;
+	}
+
+	$description = goshendems_default_meta_description();
+	if ( '' === $description ) {
+		return;
+	}
+
+	echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
+}
+add_action( 'wp_head', 'goshendems_meta_description', 1 );
 
 /**
  * Implement the Custom Header feature.

@@ -279,7 +279,7 @@ Resources (`/resources/`) and Candidates (`/candidates/`) can be added manually 
 
 **Edit nav:** WP Admin → Appearance → Menus → assign to **Primary**. Placeholder menus (e.g. "Menu 1") are auto-replaced on first admin visit, or use the theme fallback until then.
 
-**Social menu defaults:** Facebook group + Instagram custom links. Icons are chosen from the URL (or Navigation Label / CSS class). Links open in a new tab. The theme seeds a **Social** menu only when no Social location is assigned — removing links in the menu editor sticks (no auto-restore).
+**Social menu defaults:** Facebook group + Instagram custom links. Supported icons: Facebook, Instagram, Linktree. Icons are chosen from the URL (`facebook.com`, `instagram.com`, `linktr.ee`) or Navigation Label / CSS class (`social-linktree`). Links open in a new tab. The theme seeds a **Social** menu only when no Social location is assigned — removing links in the menu editor sticks (no auto-restore).
 
 **Edit social links:** Appearance → Menus → **Social** menu → assign to **Social** location.
 

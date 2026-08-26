@@ -21,7 +21,7 @@ get_header();
     <?php if ( $hero ) : ?>
     <!-- Hero -->
     <section class="hero hero--short" aria-label="Hero banner">
-      <?php echo wp_get_attachment_image( $hero, 'full' ); ?>
+      <?php echo wp_get_attachment_image( $hero, 'hero_image' ); ?>
     </section>
     <?php endif; ?>
 

@@ -32,9 +32,13 @@ get_header();
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'candidate-profile' ); ?>>
 			<div class="candidate-profile__media">
-				<?php if ( $picture ) : ?>
+				<?php
+				// Guard against IDs left behind by deleted attachments.
+				$picture_html = $picture ? wp_get_attachment_image( $picture, 'large' ) : '';
+				?>
+				<?php if ( '' !== $picture_html ) : ?>
 					<div class="candidate-profile__photo">
-						<?php echo wp_get_attachment_image( $picture, 'large' ); ?>
+						<?php echo $picture_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by wp_get_attachment_image(). ?>
 					</div>
 				<?php else : ?>
 					<div class="candidate-profile__photo candidate-profile__photo--placeholder" aria-hidden="true">

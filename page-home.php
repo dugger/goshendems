@@ -21,7 +21,7 @@ get_header();
     <?php if ( is_array( $hero ) && ! empty( $hero['image'] ) ) : ?>
     <!-- Hero -->
     <section class="hero" aria-label="Hero banner">
-	    <?php echo wp_get_attachment_image( $hero['image'], 'full' ); ?>
+	    <?php echo wp_get_attachment_image( $hero['image'], 'hero_image' ); ?>
       <div class="cta">
         <?php if ( ! empty( $hero['title'] ) ) : ?>
           <h1><?php echo esc_html( $hero['title'] ); ?></h1>

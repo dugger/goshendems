@@ -26,6 +26,8 @@
 			<div><a style="color:#dbefff;text-decoration:none;" href="/stories">Stories</a></div>
 			</div>
 		</div>
+
+		<p class="footer-disclaimer small">Paid for by Goshen City Democratic Party.</p>
 		</footer>
 	</div>
 

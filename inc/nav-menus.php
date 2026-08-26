@@ -182,7 +182,7 @@ function goshendems_prepend_mobile_logo_menu_item( $items, $args ) {
 
 	$logo_item  = '<li class="logo-menu-item menu-item menu-item-type-custom menu-item-home">';
 	$logo_item .= '<a href="' . $home_url . '">';
-	$logo_item .= '<img class="logo" src="' . $logo_url . '" alt="' . esc_attr__( 'Goshen Dems Logo', 'goshendems' ) . '">';
+	$logo_item .= '<img class="logo" src="' . $logo_url . '" width="451" height="430" loading="lazy" decoding="async" alt="' . esc_attr__( 'Goshen Dems Logo', 'goshendems' ) . '">';
 	$logo_item .= '</a></li>';
 
 	return $logo_item . $items;
@@ -234,7 +234,7 @@ function goshendems_primary_menu_fallback( $args ) {
 
 	$logo_url = esc_url( get_template_directory_uri() . '/assets/logo_light.png' );
 	echo '<li class="logo-menu-item"><a href="' . esc_url( home_url( '/' ) ) . '">';
-	echo '<img class="logo" src="' . $logo_url . '" alt="' . esc_attr__( 'Goshen Dems Logo', 'goshendems' ) . '"></a></li>';
+	echo '<img class="logo" src="' . $logo_url . '" width="451" height="430" loading="lazy" decoding="async" alt="' . esc_attr__( 'Goshen Dems Logo', 'goshendems' ) . '"></a></li>';
 
 	foreach ( goshendems_get_default_primary_menu_items() as $item ) {
 		$url = '';
@@ -384,22 +384,32 @@ function goshendems_seed_social_menu_items( $menu_id ) {
 }
 
 /**
+ * Supported social icon slugs.
+ *
+ * @return array<int, string>
+ */
+function goshendems_get_supported_social_icons() {
+	return array( 'facebook', 'instagram', 'linktree' );
+}
+
+/**
  * Resolve a supported social icon slug for a menu item.
  *
  * @param WP_Post $item Menu item.
  * @return string Icon slug or empty string.
  */
 function goshendems_get_social_icon_for_menu_item( $item ) {
-	$classes = is_array( $item->classes ) ? $item->classes : array();
+	$supported = goshendems_get_supported_social_icons();
+	$classes   = is_array( $item->classes ) ? $item->classes : array();
 
 	foreach ( $classes as $class ) {
-		if ( in_array( $class, array( 'facebook', 'instagram' ), true ) ) {
+		if ( in_array( $class, $supported, true ) ) {
 			return $class;
 		}
 
 		if ( 0 === strpos( $class, 'social-' ) ) {
 			$icon = substr( $class, 7 );
-			if ( in_array( $icon, array( 'facebook', 'instagram' ), true ) ) {
+			if ( in_array( $icon, $supported, true ) ) {
 				return $icon;
 			}
 		}
@@ -414,10 +424,14 @@ function goshendems_get_social_icon_for_menu_item( $item ) {
 		if ( false !== strpos( $host, 'instagram.com' ) ) {
 			return 'instagram';
 		}
+
+		if ( false !== strpos( $host, 'linktr.ee' ) || false !== strpos( $host, 'linktree.com' ) ) {
+			return 'linktree';
+		}
 	}
 
 	$title_slug = sanitize_title( $item->title );
-	if ( in_array( $title_slug, array( 'facebook', 'instagram' ), true ) ) {
+	if ( in_array( $title_slug, $supported, true ) ) {
 		return $title_slug;
 	}
 
@@ -427,13 +441,14 @@ function goshendems_get_social_icon_for_menu_item( $item ) {
 /**
  * Inline SVG markup for a social network icon.
  *
- * @param string $icon Icon slug (`facebook` or `instagram`).
+ * @param string $icon Icon slug (`facebook`, `instagram`, or `linktree`).
  * @return string SVG markup or empty string.
  */
 function goshendems_get_social_icon_svg_markup( $icon ) {
 	$icons = array(
 		'facebook'  => '<svg class="header-social-links__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
 		'instagram' => '<svg class="header-social-links__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>',
+		'linktree'  => '<svg class="header-social-links__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="m13.736 5.853 4.005-4.117 2.325 2.381-4.201 4.005h5.908v3.305h-5.936l4.228 4.107-2.325 2.334L12 12.099l-5.74 5.769-2.325-2.325 4.229-4.108H2.227V8.121h5.908L3.934 4.117l2.325-2.381 4.005 4.117V0h3.472zm-3.472 10.306h3.473V24h-3.473z"/></svg>',
 	);
 
 	return $icons[ $icon ] ?? '';
@@ -477,7 +492,8 @@ function goshendems_social_menu_fallback( $args ) {
 		return;
 	}
 
-	echo '<ul id="' . esc_attr( $args['menu_id'] ) . '" class="header-social-links" role="navigation" aria-label="' . esc_attr__( 'Social media', 'goshendems' ) . '">';
+	echo '<nav class="header-social-nav" aria-label="' . esc_attr__( 'Social media', 'goshendems' ) . '">';
+	echo '<ul id="' . esc_attr( $args['menu_id'] ) . '" class="header-social-links">';
 
 	foreach ( goshendems_get_default_social_menu_items() as $item ) {
 		$svg = goshendems_get_social_icon_svg_markup( $item['icon'] );
@@ -490,7 +506,7 @@ function goshendems_social_menu_fallback( $args ) {
 		);
 	}
 
-	echo '</ul>';
+	echo '</ul></nav>';
 }
 
 /**
@@ -505,7 +521,7 @@ function goshendems_social_links() {
 			'container'      => false,
 			'fallback_cb'    => 'goshendems_social_menu_fallback',
 			'depth'          => 1,
-			'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation" aria-label="' . esc_attr__( 'Social media', 'goshendems' ) . '">%3$s</ul>',
+			'items_wrap'     => '<nav class="header-social-nav" aria-label="' . esc_attr__( 'Social media', 'goshendems' ) . '"><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 		)
 	);
 }

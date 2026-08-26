@@ -4,7 +4,7 @@ Theme URI: https://github.com/dugger/goshendems
 Author: Dugger
 Author URI: https://github.com/dugger/goshendems
 Description: Custom theme for the Goshen City Democratic Party website. ACF-driven pages, story flexible content, and event calendar integration.
-Version: 1.3.6
+Version: 1.3.7
 Tested up to: 7.0
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -55,7 +55,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Generic
 --------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;1,500&display=swap');
+/* Work Sans is enqueued in functions.php (goshendems-work-sans) so it is not a chained @import. */
 
 /* Normalize
 --------------------------------------------- */
@@ -1007,7 +1007,8 @@ textarea {
     text-align: right;
   }
   .featured-stories__link{
-    color: var(--dark-blue);
+    /* Darker than --dark-blue so it clears 4.5:1 against the --green panel. */
+    color: #0d3a75;
     font-weight: 700;
     font-size: 16px;
     text-decoration: none;
@@ -1566,13 +1567,13 @@ textarea {
 	font-weight:600;
   }
   
-  /* Hero */
+  /* Hero — aspect matches hero_image crop (1267×600) */
   .hero{
 	position:relative;
 	border-radius:12px;
 	overflow:hidden;
 	box-shadow:var(--card-shadow);
-	aspect-ratio: 16 / 9;
+	aspect-ratio: 1267 / 600;
 	margin-left: 0;
 	margin-right: 0;
 	margin-top: 0;
@@ -1881,6 +1882,17 @@ textarea {
 	flex-wrap:wrap;
   }
   footer .small { font-size:13px; color:rgba(255,255,255,0.9); }
+  footer .small a{
+	display:inline-block;
+	padding:6px 4px;
+	line-height:1.4;
+  }
+  .footer-disclaimer{
+	flex:1 0 100%;
+	margin:12px 0 0;
+	padding-top:12px;
+	border-top:1px solid rgba(255,255,255,0.25);
+  }
   
   /* Archive and utility page content */
   .site-main{
@@ -1963,6 +1975,11 @@ textarea {
     margin:0;
   }
 
+  .site-header__top .header-social-nav{
+	flex:0 0 auto;
+	margin-left:auto;
+	gap:0;
+  }
   .header-social-links{
 	display:flex;
 	align-items:center;
@@ -2055,12 +2072,14 @@ textarea {
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:44px;
-      height:44px;
+      min-width:48px;
+      min-height:48px;
+      width:48px;
+      height:48px;
       border:1px solid #dbe5ff;
       background:#fff;
       border-radius:8px;
-      padding:4px;
+      padding:12px;
       flex-shrink:0;
     }
     .menu-toggle .hamburger-icon{
@@ -2093,11 +2112,27 @@ textarea {
     .nav li{
       flex:0 0 auto;
       width:100%;
-      justify-content:center;
+      justify-content:stretch;
+      margin:4px 0;
     }
     .nav a{
-      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      box-sizing:border-box;
+      min-height:48px;
+      padding:12px 16px;
       font-size:18px;
+      line-height:1.2;
+      border-radius:8px;
+      transition:background-color 0.15s ease, color 0.15s ease;
+    }
+    .nav a:hover,
+    .nav a:focus-visible{
+      background:#eef3ff;
+      color:var(--dark-blue);
+      text-decoration:none;
     }
   }
 

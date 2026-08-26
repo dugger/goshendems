@@ -22,7 +22,7 @@ get_header();
       <?php
       $hero = get_field( 'hero_image' );
       if ( $hero ) {
-        echo wp_get_attachment_image( $hero, 'full' );
+        echo wp_get_attachment_image( $hero, 'hero_image' );
       }
       ?>
     </section>
