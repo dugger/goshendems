@@ -2,13 +2,15 @@
 
 Add a new layout to the Story flexible content field (`body`) on the `story` post type.
 
+Default pages (`page.php`) use the same `content-block-*.php` partials via the **Page fields** group (`group_68f9b200pagefld`). If the new layout should appear on both stories and generic pages, add it to both field groups.
+
 ---
 
 ## Overview
 
 Story content blocks use ACF Flexible Content → theme template partials. Each layout name must match a `template-parts/content-block-{layout}.php` file.
 
-Existing layouts: `paragraph`, `full_width_image`, `call_to_action`, `pull_quote`, `video_embed`
+Existing layouts: `paragraph`, `full_width_image`, `call_to_action`, `pull_quote`, `video_embed`, `card_grid`
 
 ---
 
@@ -67,6 +69,7 @@ Add styles to `style.css` under the content blocks section. Use BEM-style class:
 | File | Change |
 |------|--------|
 | `acf-json/group_68e4df466f654.json` | New layout + subfields |
+| `acf-json/group_68f9b200pagefld.json` | Same layout if pages should use it |
 | `template-parts/content-block-{layout}.php` | New partial |
 | `style.css` | Block styles |
 

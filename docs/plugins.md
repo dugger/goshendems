@@ -137,7 +137,7 @@ Historical audit found duplicate OG when theme + Yoast both emitted tags. Confir
 
 ## Classic Editor (`classic-editor`)
 
-Disables block editor site-wide. All content editing is Classic Editor + ACF meta boxes.
+Disables block editor site-wide. Stories and other CPTs use Classic Editor + ACF. **Pages have the editor removed** — edit them with ACF fields only (`goshendems_disable_page_editor()`).
 
 ---
 

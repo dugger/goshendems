@@ -49,6 +49,10 @@ Local-only reference. Based on inventory of `http://goshen-democrats.local` (rec
 | `/about/` | `page-about.php` | Page ID 76 |
 | `/calendar/` | `page-calendar.php` | Page ID 19; Simple Calendar |
 | `/contact-us/` | `page-contact-us.php` | Page ID 100; Ninja Form ID 1 |
+| `/2026-general-election/` | `page.php` | Page ID 482; section hub + child pages |
+| `/2026-general-election/early-voting/` | `page.php` | Child of 482 |
+| `/2026-general-election/where-to-vote-on-election-day/` | `page.php` | Child of 482 |
+| `/2026-general-election/indianas-photo-id-requirement/` | `page.php` | Child of 482 |
 | `/stories/` | `archive-story.php` | Story CPT archive |
 | `/story/{slug}/` | `single-story.php` | **Canonical** single story URL |
 | `/stories/{slug}/` | 301 → `/story/{slug}/` | Non-canonical; redirects |
@@ -73,7 +77,7 @@ Local-only reference. Based on inventory of `http://goshen-democrats.local` (rec
 | Auto Focus Keyword for SEO | `auto-focus-keyword-for-seo` | Yoast helper — **active but useless without Yoast** |
 | ACF Content Analysis for Yoast SEO | `acf-content-analysis-for-yoast-seo` | Installed; only useful if Yoast active |
 | Simple Calendar | `google-calendar-events` | Events on calendar page — **active** |
-| Classic Editor | `classic-editor` | Disables block editor — **active** |
+| Classic Editor | `classic-editor` | Disables block editor — **active**; pages have the editor removed in the theme |
 | Cloudflare | `cloudflare` | CDN/cache integration — **active** |
 | WP Super Cache | `wp-super-cache` | Page caching — **active** |
 | EWWW Image Optimizer | `ewww-image-optimizer` | Image compression — **inactive** |

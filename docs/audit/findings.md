@@ -90,7 +90,7 @@ Running log from the local site audit. Severity: **Critical** | **High** | **Med
 - **Impact:** Page ID 54 (`stories`) and any future default pages render broken HTML.
 - **Recommendation:** Implement minimal loop or redirect; remove stray doctype.
 - **Effort:** S
-- **Status:** Open
+- **Status:** Fixed (2026-09-20) — `page.php` now uses story-style ACF flexible content with `the_content()` fallback.
 
 ### [High] Unclosed `<main>` on key templates
 - **Area:** Theme
@@ -227,11 +227,11 @@ Running log from the local site audit. Severity: **Critical** | **High** | **Med
 - **Status:** Open
 
 ### [Low] Page templates hide classic editor content
-- **Area:** ACF
-- **Location:** ACF field groups with `hide_on_screen: the_content`
-- **Issue:** All major pages use ACF fields only; classic editor content ignored.
-- **Impact:** Expected for this site — document so agents don't edit `post_content` expecting front-end changes.
-- **Status:** Documented
+- **Area:** Theme / ACF
+- **Location:** `goshendems_disable_page_editor()`; ACF field groups with `hide_on_screen: the_content`
+- **Issue:** Pages have no classic editor; content is ACF-only. `page.php` may still output leftover `post_content` when flexible `body` is empty.
+- **Impact:** Expected for this site — do not edit `post_content` expecting front-end changes except as a temporary fallback.
+- **Status:** Documented (2026-09-20 — editor support removed for all pages)
 
 ---
 

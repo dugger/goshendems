@@ -4,6 +4,64 @@ Track documentation updates tied to audit phases.
 
 ---
 
+## 2026-09-20 — Section links in the collapsed primary menu
+
+**Changed:** On small screens the child-page subnav row is hidden. Those links appear in the hamburger menu under the parent item (Election Info). Desktop still uses the separate subnav row.
+
+---
+
+## 2026-09-20 — Election child pages use existing blocks
+
+**Changed:** Early Voting, Photo ID, and the 2026 General Election parent page now use paragraph, card grid, call to action, and pull quote — no new block types.
+
+---
+
+## 2026-09-20 — Card grid block for location lists
+
+**Added:** `card_grid` flexible content layout (heading, intro, cards with optional maps link) on Page fields and Story fields. Where to Vote uses one grid per city.
+
+**Updated:** `docs/content-model.md`, `docs/how-to/add-story-block.md`
+
+---
+
+## 2026-09-20 — Primary nav parent state + header section links
+
+**Changed:** Primary menu page items get `current-menu-parent` when a child page is viewed (Election Info while on Early Voting, etc.). Child links moved from in-page pills to a text row under the primary nav.
+
+**Updated:** `inc/nav-menus.php`, `header.php`, `page.php`, `template-parts/nav-page-section.php`, `style.css`
+
+---
+
+## 2026-09-20 — One-level page section navigation
+
+**Added:** In-page nav on `page.php` for parent pages with children (and those children). Parent link first, then immediate children by menu order. Markup in `template-parts/nav-page-section.php`; helpers in `inc/pages.php`.
+
+**Updated:** `docs/content-model.md`, `docs/theme-guide.md`, `docs/architecture.md`
+
+---
+
+## 2026-09-20 — Remove classic editor from all pages
+
+**Changed:** `remove_post_type_support( 'page', 'editor' )` so pages are edited with ACF only (Page fields, Home, About, Calendar, Contact). Stored `post_content` can still render on the front when `page.php` has no flexible `body` rows.
+
+**Updated:** `functions.php`, Page fields + Calendar ACF `hide_on_screen`, `docs/content-model.md`, `docs/theme-guide.md`, `docs/plugins.md`
+
+---
+
+## 2026-09-20 — Default pages use story-style flexible content
+
+**Added:**
+
+- `page.php` renders ACF `hero_image` + `body` flexible content like `single-story.php`
+- Page fields group (`acf-json/group_68f9b200pagefld.json`) — same layouts as stories (`paragraph`, `full_width_image`, `call_to_action`, `pull_quote`, `video_embed`)
+- Classic editor fallback: if `body` has no rows, `page.php` still outputs `the_content()`
+
+**Location:** default page template, excluding front page and slugs `home`, `about`, `calendar`, `contact-us`, `stories`
+
+**Updated:** `docs/content-model.md`, `docs/theme-guide.md`, `docs/how-to/add-page-template.md`, `docs/how-to/add-story-block.md`
+
+---
+
 ## 2026-07-27 — Candidate contact fields on single
 
 **Added:**

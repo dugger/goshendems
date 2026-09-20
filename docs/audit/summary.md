@@ -76,7 +76,7 @@ These are small, high-impact fixes with no product decisions required.
 
 | # | Task | Area | Effort |
 |---|------|------|--------|
-| 8 | Fix `page.php` — proper page loop or redirect; remove stray `<!doctype>` | Theme | S |
+| 8 | ~~Fix `page.php` — proper page loop or redirect; remove stray `<!doctype>`~~ Done 2026-09-20 (story-style flexible content + classic fallback) | Theme | S |
 | 9 | Escaping pass on templates (see escaping table in [findings.md](findings.md)) | Theme/Security | M |
 | 10 | Custom `404.php` — on-brand message + links to Home, Stories, Calendar, Contact | Theme/UX | S |
 | 11 | Clean up `search.php` — remove sidebar/widgets; style like story archive | Theme/UX | M |

@@ -12,7 +12,7 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | Page slug `about` | `page-about.php` |
 | Page slug `calendar` | `page-calendar.php` |
 | Page slug `contact-us` | `page-contact-us.php` |
-| Other pages | `page.php` |
+| Other pages | `page.php` (story-style flexible content; `the_content()` if `body` is empty) |
 | Story archive | `archive-story.php` |
 | Resource archive | `archive-resource.php` |
 | Candidate archive | `archive-candidate.php` |
@@ -34,7 +34,7 @@ Conventions for editing the `goshendems` WordPress theme. Based on Underscores (
 | `inc/nav-menus.php` | Primary + Social WP menus, default menu seeding, social icons |
 | `inc/template-functions.php` | Custom image sizes |
 | `inc/stories.php` | Story hero → featured image for OG |
-| `inc/pages.php` | Page ACF hero → featured image for OG |
+| `inc/pages.php` | Page ACF hero → featured image for OG; page section nav helpers |
 | `inc/schema.php` | Person / Article JSON-LD for candidates and stories |
 | `inc/template-tags.php` | Post meta template tags (_s) |
 | `style.css` | All theme CSS |
@@ -51,7 +51,8 @@ template-parts/
 ├── content-none.php
 ├── content-search.php
 ├── elected-positions.php           # Elected position row partial
-└── content-block-*.php             # Story flexible content layouts
+├── nav-page-section.php            # Parent + child page nav (one level)
+└── content-block-*.php             # Story / default-page flexible content layouts
 ```
 
 ---
@@ -182,10 +183,12 @@ composer run phpcs
 
 See [audit/findings.md](audit/findings.md). Phase 1 summary:
 
-- `page.php` broken; `<main>` unclosed on home and single-story templates
+- `<main>` unclosed on home and single-story templates
 - Home page JS error from orphaned testimonial script
 - Escaping gaps — see escaping table in [findings.md](audit/findings.md)
 - Calendar page missing empty guard
+
+`page.php` uses the same flexible content loop as `single-story.php` (Page fields ACF group, including `card_grid`). Empty `body` still outputs stored `post_content` via `the_content()`. The classic editor is disabled for all pages. Parent/child pages get a one-level section row under the primary nav (`template-parts/nav-page-section.php`). On small screens that row is hidden and the child links appear in the hamburger menu under the parent item. The matching primary menu item is marked `current-menu-parent` on child pages.
 
 ---
 

@@ -8,7 +8,9 @@ Create a new custom page template for the Goshen Dems theme.
 
 WordPress auto-loads `page-{slug}.php` when a page slug matches the filename. For explicit templates, use `page-{name}.php` or the Template Name header.
 
-Existing examples: `page-home.php`, `page-about.php`, `page-calendar.php`, `page-contact-us.php`
+Existing examples: `page-home.php`, `page-about.php`, `page-calendar.php`, `page-contact-us.php`.
+
+Pages that do **not** need a custom layout use default `page.php` and the **Page fields** ACF group (same flexible content blocks as stories). Only add a named template when the page needs a different structure (home sections, calendar, contact form, and so on).
 
 ---
 
@@ -74,6 +76,7 @@ Or:
 2. Set slug to match template (e.g. slug `events` → `page-events.php`)
 3. Publish
 4. Fill ACF fields
+5. For a section of related pages: set **Page Attributes → Parent** on the child pages (one level). Add the parent to the Primary menu. **Order** controls the header section links.
 
 ### 4. Add navigation link (if needed)
 
@@ -100,6 +103,7 @@ Nav is hardcoded in `header.php` — add a `<li>` to `#primary-menu` manually un
 
 ## Avoid
 
-- Using bare `page.php` — it is minimal/broken; always create a named template
+- Creating a named template when `page.php` + Page fields already fit (same blocks as stories)
 - Duplicating `<!doctype html>` inside templates (Underscores leftover in some files)
 - Hardcoding page IDs in ACF location rules
+- Adding Page fields to Home/About/Calendar/Contact — those slugs are excluded because they still show “Default template” in admin while rendering `page-{slug}.php`

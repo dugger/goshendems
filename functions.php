@@ -104,6 +104,16 @@ function goshendems_setup() {
 add_action( 'after_setup_theme', 'goshendems_setup' );
 
 /**
+ * Pages are edited with ACF fields only — no classic/block editor.
+ *
+ * Must run on init after core registers the page post type.
+ */
+function goshendems_disable_page_editor() {
+	remove_post_type_support( 'page', 'editor' );
+}
+add_action( 'init', 'goshendems_disable_page_editor' );
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.

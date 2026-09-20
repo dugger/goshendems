@@ -156,3 +156,76 @@ function goshendems_page_wpseo_opengraph_image_size( $size ) {
 	return $size;
 }
 add_filter( 'wpseo_opengraph_image_size', 'goshendems_page_wpseo_opengraph_image_size' );
+
+/**
+ * Resolve the section parent for a page (self if top-level, immediate parent if nested).
+ *
+ * Only one level of nesting is supported: grandchildren are treated as children
+ * of their parent, not of the top-level page.
+ *
+ * @param int $post_id Page ID.
+ * @return int Parent/section page ID, or 0.
+ */
+function goshendems_get_page_section_id( $post_id ) {
+	$post_id = (int) $post_id;
+	if ( $post_id <= 0 || 'page' !== get_post_type( $post_id ) ) {
+		return 0;
+	}
+
+	$parent_id = (int) wp_get_post_parent_id( $post_id );
+	if ( $parent_id > 0 ) {
+		return $parent_id;
+	}
+
+	return $post_id;
+}
+
+/**
+ * Parent page plus its immediate children for in-page section navigation.
+ *
+ * Returns an empty array when the section has no published children.
+ *
+ * @param int $post_id Current page ID.
+ * @return WP_Post[] Section parent first, then children by menu_order.
+ */
+function goshendems_get_page_section_pages( $post_id ) {
+	$section_id = goshendems_get_page_section_id( $post_id );
+	if ( $section_id <= 0 ) {
+		return array();
+	}
+
+	$children = get_pages(
+		array(
+			'parent'      => $section_id,
+			'sort_column' => 'menu_order',
+			'sort_order'  => 'ASC',
+			'post_status' => 'publish',
+		)
+	);
+
+	if ( empty( $children ) ) {
+		return array();
+	}
+
+	$section = get_post( $section_id );
+	if ( ! $section instanceof WP_Post || 'publish' !== $section->post_status ) {
+		return array();
+	}
+
+	return array_merge( array( $section ), $children );
+}
+
+/**
+ * Immediate child pages of the current page's section (one level).
+ *
+ * @param int $post_id Current page ID.
+ * @return WP_Post[]
+ */
+function goshendems_get_page_section_children( $post_id ) {
+	$pages = goshendems_get_page_section_pages( $post_id );
+	if ( count( $pages ) < 2 ) {
+		return array();
+	}
+
+	return array_slice( $pages, 1 );
+}

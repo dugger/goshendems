@@ -43,4 +43,5 @@
 			<nav id="site-navigation" class="nav" aria-label="Primary">
 				<?php goshendems_primary_nav_menu(); ?>
 			</nav>
+			<?php get_template_part( 'template-parts/nav', 'page-section' ); ?>
 		</header><!-- #masthead -->

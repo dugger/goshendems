@@ -286,6 +286,141 @@ function goshendems_primary_nav_menu() {
 }
 
 /**
+ * Mark a primary-nav page item as the active parent when viewing one of its children.
+ *
+ * WordPress only adds current-menu-parent when the child is also in the menu.
+ *
+ * @param array    $classes Menu item classes.
+ * @param WP_Post  $item    Menu item.
+ * @param stdClass $args    wp_nav_menu() arguments.
+ * @return array
+ */
+function goshendems_nav_menu_parent_classes( $classes, $item, $args ) {
+	if ( empty( $args->theme_location ) || 'menu-1' !== $args->theme_location ) {
+		return $classes;
+	}
+
+	if ( ! is_page() ) {
+		return $classes;
+	}
+
+	$current_id = (int) get_queried_object_id();
+	$parent_id  = (int) wp_get_post_parent_id( $current_id );
+	if ( $parent_id <= 0 ) {
+		return $classes;
+	}
+
+	$is_parent_item = false;
+	if ( 'page' === $item->object && (int) $item->object_id === $parent_id ) {
+		$is_parent_item = true;
+	} elseif ( ! empty( $item->url ) ) {
+		$parent_url = get_permalink( $parent_id );
+		if ( $parent_url && untrailingslashit( $item->url ) === untrailingslashit( $parent_url ) ) {
+			$is_parent_item = true;
+		}
+	}
+
+	if ( $is_parent_item ) {
+		$classes[] = 'current-menu-parent';
+		$classes[] = 'current-menu-ancestor';
+	}
+
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'goshendems_nav_menu_parent_classes', 10, 3 );
+
+/**
+ * Insert one-level section children into the primary menu after the parent item.
+ *
+ * Desktop CSS hides these copies so the separate subnav row remains. The
+ * hamburger menu shows them under the parent when the primary nav is collapsed.
+ *
+ * @param array    $items Sorted menu items.
+ * @param stdClass $args  wp_nav_menu() arguments.
+ * @return array
+ */
+function goshendems_nav_menu_section_children( $items, $args ) {
+	if ( empty( $args->theme_location ) || 'menu-1' !== $args->theme_location ) {
+		return $items;
+	}
+
+	if ( ! is_page() ) {
+		return $items;
+	}
+
+	$goshendems_current_id = (int) get_queried_object_id();
+	$goshendems_children   = goshendems_get_page_section_children( $goshendems_current_id );
+	if ( empty( $goshendems_children ) ) {
+		return $items;
+	}
+
+	$goshendems_section_id  = goshendems_get_page_section_id( $goshendems_current_id );
+	$goshendems_parent_item = null;
+	$goshendems_section_url = $goshendems_section_id ? get_permalink( $goshendems_section_id ) : '';
+
+	foreach ( $items as $goshendems_item ) {
+		if ( 'page' === $goshendems_item->object && (int) $goshendems_item->object_id === $goshendems_section_id ) {
+			$goshendems_parent_item = $goshendems_item;
+			break;
+		}
+		if ( $goshendems_section_url && ! empty( $goshendems_item->url )
+			&& untrailingslashit( $goshendems_item->url ) === untrailingslashit( $goshendems_section_url ) ) {
+			$goshendems_parent_item = $goshendems_item;
+			break;
+		}
+	}
+
+	if ( ! $goshendems_parent_item ) {
+		return $items;
+	}
+
+	$goshendems_injected = array();
+	foreach ( $goshendems_children as $goshendems_child ) {
+		$goshendems_is_current = ( (int) $goshendems_child->ID === $goshendems_current_id );
+		$goshendems_classes    = array(
+			'menu-item',
+			'menu-item-type-post_type',
+			'menu-item-object-page',
+			'page-section-menu-item',
+		);
+		if ( $goshendems_is_current ) {
+			$goshendems_classes[] = 'current-menu-item';
+		}
+
+		$goshendems_injected[] = (object) array(
+			'ID'               => -1000000 - (int) $goshendems_child->ID,
+			'db_id'            => 0,
+			'menu_item_parent' => 0,
+			'object_id'        => (int) $goshendems_child->ID,
+			'object'           => 'page',
+			'type'             => 'post_type',
+			'title'            => $goshendems_child->post_title,
+			'url'              => get_permalink( $goshendems_child ),
+			'target'           => '',
+			'attr_title'       => '',
+			'description'      => '',
+			'xfn'              => '',
+			'status'           => 'publish',
+			'classes'          => $goshendems_classes,
+			'current'          => $goshendems_is_current,
+		);
+	}
+
+	$goshendems_out = array();
+	foreach ( $items as $goshendems_item ) {
+		$goshendems_out[] = $goshendems_item;
+		if ( (int) $goshendems_item->ID === (int) $goshendems_parent_item->ID ) {
+			foreach ( $goshendems_injected as $goshendems_child_item ) {
+				$goshendems_out[] = $goshendems_child_item;
+			}
+		}
+	}
+
+	return $goshendems_out;
+}
+add_filter( 'wp_nav_menu_objects', 'goshendems_nav_menu_section_children', 10, 2 );
+
+/**
  * Default social menu item definitions.
  *
  * @return array<int, array<string, string>>

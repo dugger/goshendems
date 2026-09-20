@@ -1,9 +1,9 @@
 {
-    "key": "group_68e4df466f654",
-    "title": "Story fields",
+    "key": "group_68f9b200pagefld",
+    "title": "Page fields",
     "fields": [
         {
-            "key": "field_68e4df4692d56",
+            "key": "field_68f9b24692d56",
             "label": "Hero Image",
             "name": "hero_image",
             "aria-label": "",
@@ -29,12 +29,12 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_68e4df7b92d57",
+            "key": "field_68f9b27b92d57",
             "label": "Body",
             "name": "body",
             "aria-label": "",
             "type": "flexible_content",
-            "instructions": "",
+            "instructions": "Same content blocks as stories. If this is empty, the page still shows classic editor content on the front.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -43,14 +43,14 @@
                 "id": ""
             },
             "layouts": {
-                "layout_68e4df805b8be": {
-                    "key": "layout_68e4df805b8be",
+                "layout_68f9b2805b8be": {
+                    "key": "layout_68f9b2805b8be",
                     "name": "paragraph",
                     "label": "Paragraph",
                     "display": "table",
                     "sub_fields": [
                         {
-                            "key": "field_68e4df9492d58",
+                            "key": "field_68f9b29492d58",
                             "label": "Text",
                             "name": "text",
                             "aria-label": "",
@@ -71,17 +71,17 @@
                             "delay": 0
                         }
                     ],
-                    "min": "1",
+                    "min": "",
                     "max": ""
                 },
-                "layout_68e4df80a1b01": {
-                    "key": "layout_68e4df80a1b01",
+                "layout_68f9b280a1b01": {
+                    "key": "layout_68f9b280a1b01",
                     "name": "full_width_image",
                     "label": "Full Width Image",
                     "display": "table",
                     "sub_fields": [
                         {
-                            "key": "field_68e4df80a1b11",
+                            "key": "field_68f9b280a1b11",
                             "label": "Image",
                             "name": "image",
                             "aria-label": "",
@@ -107,7 +107,7 @@
                             "preview_size": "medium"
                         },
                         {
-                            "key": "field_68e4df80a1b12",
+                            "key": "field_68f9b280a1b12",
                             "label": "Caption",
                             "name": "caption",
                             "aria-label": "",
@@ -131,14 +131,14 @@
                     "min": "",
                     "max": ""
                 },
-                "layout_68e4df80a1b02": {
-                    "key": "layout_68e4df80a1b02",
+                "layout_68f9b280a1b02": {
+                    "key": "layout_68f9b280a1b02",
                     "name": "call_to_action",
                     "label": "Call to Action",
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_68e4df80a1b21",
+                            "key": "field_68f9b280a1b21",
                             "label": "Heading",
                             "name": "heading",
                             "aria-label": "",
@@ -159,7 +159,7 @@
                             "append": ""
                         },
                         {
-                            "key": "field_68e4df80a1b22",
+                            "key": "field_68f9b280a1b22",
                             "label": "Text",
                             "name": "text",
                             "aria-label": "",
@@ -180,7 +180,7 @@
                             "delay": 0
                         },
                         {
-                            "key": "field_68e4df80a1b23",
+                            "key": "field_68f9b280a1b23",
                             "label": "Button Label",
                             "name": "button_label",
                             "aria-label": "",
@@ -201,7 +201,7 @@
                             "append": ""
                         },
                         {
-                            "key": "field_68e4df80a1b24",
+                            "key": "field_68f9b280a1b24",
                             "label": "Button URL",
                             "name": "button_url",
                             "aria-label": "",
@@ -222,14 +222,14 @@
                     "min": "",
                     "max": ""
                 },
-                "layout_68e4df80a1b03": {
-                    "key": "layout_68e4df80a1b03",
+                "layout_68f9b280a1b03": {
+                    "key": "layout_68f9b280a1b03",
                     "name": "pull_quote",
                     "label": "Pull Quote",
                     "display": "table",
                     "sub_fields": [
                         {
-                            "key": "field_68e4df80a1b31",
+                            "key": "field_68f9b280a1b31",
                             "label": "Quote",
                             "name": "quote",
                             "aria-label": "",
@@ -250,7 +250,7 @@
                             "new_lines": ""
                         },
                         {
-                            "key": "field_68e4df80a1b32",
+                            "key": "field_68f9b280a1b32",
                             "label": "Attribution",
                             "name": "attribution",
                             "aria-label": "",
@@ -274,14 +274,14 @@
                     "min": "",
                     "max": ""
                 },
-                "layout_68e4df80a1b04": {
-                    "key": "layout_68e4df80a1b04",
+                "layout_68f9b280a1b04": {
+                    "key": "layout_68f9b280a1b04",
                     "name": "video_embed",
                     "label": "Video Embed",
                     "display": "table",
                     "sub_fields": [
                         {
-                            "key": "field_68e4df80a1b41",
+                            "key": "field_68f9b280a1b41",
                             "label": "URL",
                             "name": "url",
                             "aria-label": "",
@@ -302,14 +302,14 @@
                     "min": "",
                     "max": ""
                 },
-                "layout_68e4e0cardgrid": {
-                    "key": "layout_68e4e0cardgrid",
+                "layout_68f9c1cardgrid": {
+                    "key": "layout_68f9c1cardgrid",
                     "name": "card_grid",
                     "label": "Card Grid",
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "layout_68e4e0cghead",
+                            "key": "layout_68f9c1cghead",
                             "label": "Heading",
                             "name": "heading",
                             "aria-label": "",
@@ -330,7 +330,7 @@
                             "append": ""
                         },
                         {
-                            "key": "layout_68e4e0cgintro",
+                            "key": "layout_68f9c1cgintro",
                             "label": "Intro",
                             "name": "intro",
                             "aria-label": "",
@@ -351,7 +351,7 @@
                             "new_lines": "wpautop"
                         },
                         {
-                            "key": "layout_68e4e0cgcards",
+                            "key": "layout_68f9c1cgcards",
                             "label": "Cards",
                             "name": "cards",
                             "aria-label": "",
@@ -368,12 +368,12 @@
                             "pagination": 0,
                             "min": 0,
                             "max": 0,
-                            "collapsed": "layout_68e4e0cgtitle",
+                            "collapsed": "layout_68f9c1cgtitle",
                             "button_label": "Add Card",
                             "rows_per_page": 20,
                             "sub_fields": [
                                 {
-                                    "key": "layout_68e4e0cgtitle",
+                                    "key": "layout_68f9c1cgtitle",
                                     "label": "Title",
                                     "name": "title",
                                     "aria-label": "",
@@ -392,10 +392,10 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "layout_68e4e0cgcards"
+                                    "parent_repeater": "layout_68f9c1cgcards"
                                 },
                                 {
-                                    "key": "layout_68e4e0cgtext",
+                                    "key": "layout_68f9c1cgtext",
                                     "label": "Text",
                                     "name": "text",
                                     "aria-label": "",
@@ -414,10 +414,10 @@
                                     "rows": 2,
                                     "placeholder": "",
                                     "new_lines": "",
-                                    "parent_repeater": "layout_68e4e0cgcards"
+                                    "parent_repeater": "layout_68f9c1cgcards"
                                 },
                                 {
-                                    "key": "layout_68e4e0cgurl",
+                                    "key": "layout_68f9c1cgurl",
                                     "label": "Link URL",
                                     "name": "link_url",
                                     "aria-label": "",
@@ -433,7 +433,7 @@
                                     "default_value": "",
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
-                                    "parent_repeater": "layout_68e4e0cgcards"
+                                    "parent_repeater": "layout_68f9c1cgcards"
                                 }
                             ]
                         }
@@ -450,14 +450,44 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "page_template",
                 "operator": "==",
-                "value": "story"
+                "value": "default"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
+            },
+            {
+                "param": "page_slug",
+                "operator": "!=",
+                "value": "about"
+            },
+            {
+                "param": "page_slug",
+                "operator": "!=",
+                "value": "calendar"
+            },
+            {
+                "param": "page_slug",
+                "operator": "!=",
+                "value": "contact-us"
+            },
+            {
+                "param": "page_slug",
+                "operator": "!=",
+                "value": "home"
+            },
+            {
+                "param": "page_slug",
+                "operator": "!=",
+                "value": "stories"
             }
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
+    "position": "acf_after_title",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
@@ -465,7 +495,7 @@
         "the_content"
     ],
     "active": true,
-    "description": "",
+    "description": "Flexible content for pages that use the default page.php template. Same layouts as stories.",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,

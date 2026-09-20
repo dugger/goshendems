@@ -10,9 +10,13 @@ ACF-driven content structure. Page IDs reflect **local restore** — treat as fr
 |----|------|-------|---------------|-----------|
 | 14 | `home` | Home Page | `page-home.php` | Home Page (`group_68caf1803c23a`) |
 | 19 | `calendar` | Calendar | `page-calendar.php` | Calendar Page (`group_68dd3f01ce692`) |
-| 54 | `stories` | Stories | *(default `page.php`)* | — |
+| 54 | `stories` | Stories | *(posts page / CPT archive)* | — (slug excluded from Page fields) |
 | 76 | `about` | About Goshen City Democratic Party | `page-about.php` | About Page (`group_68e54daba70f6`) |
 | 100 | `contact-us` | Contact Us | `page-contact-us.php` | Contact Page (`group_6904d63ed5bfd`) |
+| 482 | `2026-general-election` | 2026 General Election | `page.php` | Page fields (`group_68f9b200pagefld`) |
+| 607 | `early-voting` | Early Voting | `page.php` | Page fields (child of 482) |
+| 610 | `where-to-vote-on-election-day` | Where to Vote on Election Day | `page.php` | Page fields (child of 482) |
+| 612 | `indianas-photo-id-requirement` | Indiana’s Photo ID Requirement | `page.php` | Page fields (child of 482) |
 
 WordPress uses `page-{slug}.php` automatically when the slug matches (e.g. `page-home.php` for slug `home`).
 
@@ -30,6 +34,7 @@ Page field groups use **slug-based or front-page rules** (not page IDs):
 | Calendar Page | `page_slug` == `calendar` |
 | About Page | `page_slug` == `about` |
 | Contact Page | `page_slug` == `contact-us` |
+| Page fields | `page_template` == `default`, excluding front page and slugs `home`, `about`, `calendar`, `contact-us`, `stories` |
 
 Custom location rule: `inc/acf-page-slug-location.php` registers the `page_slug` matcher with ACF.
 
@@ -70,6 +75,7 @@ Previously used numeric page IDs (fragile on import). Migrated June 2026 — see
 | `call_to_action` | `content-block-call_to_action.php` | `heading`, `text`, `button_label`, `button_url` |
 | `pull_quote` | `content-block-pull_quote.php` | `quote`, `attribution` |
 | `video_embed` | `content-block-video_embed.php` | `url` (oEmbed) |
+| `card_grid` | `content-block-card_grid.php` | `heading`, `intro`, `cards` (title, text, link_url) |
 
 Loop pattern in `single-story.php`:
 
@@ -220,6 +226,23 @@ Location: **page slug** `contact-us`
 | `form_intro` | Text/WYSIWYG | Rendered in `page-contact-us.php` |
 | `form_shortcode` | Text | **Defined but unused** — template hardcodes `[ninja_form id=1]` |
 
+### Page fields (`group_68f9b200pagefld`)
+
+Location: **page template** `default`, excluding **front page** and slugs `home`, `about`, `calendar`, `contact-us`, `stories`.
+
+Those slugs still show as “Default template” in admin, but WordPress renders `page-{slug}.php` (or the posts page / story archive) instead of `page.php`. The exclusions keep Page fields off those screens so they do not collide with Home/About/Calendar/Contact groups. About’s WYSIWYG also uses the field name `body`.
+
+`page.php` renders these the same way `single-story.php` renders Story fields. If `body` has no rows, it falls back to stored `post_content` (`the_content()`) so existing pages still display until they are rebuilt as blocks.
+
+The classic editor is removed for all pages (`remove_post_type_support( 'page', 'editor' )`). Edit page copy in ACF fields only.
+
+`page.php` shows a **header section nav** (children only) when the current page is a parent with children, or a child of such a parent (one level only). The parent is expected in the primary menu; that item uses `current-menu-parent` while a child page is viewed. Order comes from **Page Attributes → Order**.
+
+| Field | Type | Notes |
+|-------|------|--------|
+| `hero_image` | Image (ID) | Optional short hero, same as stories |
+| `body` | Flexible Content | Layouts: `paragraph`, `full_width_image`, `call_to_action`, `pull_quote`, `video_embed`, `card_grid` |
+
 ---
 
 ## ACF JSON sync
@@ -239,6 +262,7 @@ acf-json/
 ├── group_68e54daba70f6.json    # About Page
 ├── group_68dd3f01ce692.json    # Calendar Page
 ├── group_6904d63ed5bfd.json    # Contact Page
+├── group_68f9b200pagefld.json  # Page fields (default template)
 ├── group_68e4df466f654.json    # Story fields
 ├── group_674a1b30resource.json # Resource fields
 ├── group_674a1b40resopts.json  # Resources settings (options)
@@ -270,6 +294,10 @@ Header social icons use **Appearance → Menus**, location **Social** (`menu-2`)
 | Donate | Custom link: ActBlue (opens in new tab) |
 
 Resources (`/resources/`) and Candidates (`/candidates/`) can be added manually in **Appearance → Menus** when ready. The theme no longer auto-adds or restores them.
+
+### Page section nav (parent / child pages)
+
+When a page has children, those child links appear as a text row **under the primary nav** (not in-page pills). The parent page should also be in **Appearance → Menus → Primary** (e.g. Election Info → 2026 General Election). That menu item gets `current-menu-item` on the parent page and `current-menu-parent` on child pages. Grandchildren are not listed. Child order: **Page Attributes → Order**. Helpers: `goshendems_get_page_section_pages()` in `inc/pages.php`; markup: `template-parts/nav-page-section.php`; parent class: `goshendems_nav_menu_parent_classes()` in `inc/nav-menus.php`.
 
 **Theme behavior:**
 - Rendered via `goshendems_primary_nav_menu()` in `header.php` (`inc/nav-menus.php`)
